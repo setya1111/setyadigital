@@ -92,7 +92,7 @@
 
             <!-- Right Actions -->
             <div class="flex items-center space-x-2 sm:space-x-3">
-                <!-- WhatsApp Community Button (Terkunci Sebelum Login) -->
+                <!-- WhatsApp Community Button -->
                 <a id="headerWaBtn" style="display: none;" href="https://chat.whatsapp.com/FVg6eKukPJS1cCZQk4wsBj?s=cl&p=a&ilr=1&amv=0" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold shadow-md shadow-emerald-500/20 transition transform hover:-translate-y-0.5">
                     <i class="fa-brands fa-whatsapp text-base mr-1.5"></i>
                     <span>Grup WhatsApp</span>
@@ -148,7 +148,6 @@
                         <div class="relative">
                             <input type="password" id="loginPassword" required placeholder="Masukkan password..." class="w-full pl-4 pr-11 py-3 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
                             
-                            <!-- ICON MATA (SHOW / HIDE PASSWORD) -->
                             <button type="button" onclick="togglePasswordVisibility('loginPassword', 'eyeIcon')" class="absolute right-3.5 top-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition focus:outline-none" title="Lihat Password">
                                 <i id="eyeIcon" class="fa-solid fa-eye text-sm"></i>
                             </button>
@@ -165,7 +164,6 @@
 
         <!-- 2. CATALOG VIEW (COURSE LIST) -->
         <section id="viewCatalog" class="hidden space-y-8">
-            <!-- Hero Banner -->
             <div class="relative rounded-3xl bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-700 text-white p-6 sm:p-10 overflow-hidden shadow-xl">
                 <div class="relative z-10 max-w-2xl space-y-3">
                     <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 text-xs font-bold backdrop-blur-md text-white">
@@ -189,7 +187,6 @@
                 </div>
             </div>
 
-            <!-- Header Bar -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Daftar Modul Kelas</h2>
@@ -205,13 +202,11 @@
                 </div>
             </div>
 
-            <!-- Course Cards Grid -->
             <div id="courseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
         <!-- 3. LEARNING PLAYER VIEW -->
         <section id="viewPlayer" class="hidden space-y-6">
-            <!-- Breadcrumb Navigation -->
             <div class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
                 <button onclick="navigateTo('catalog')" class="hover:text-brand-600 dark:hover:text-sky-400 font-bold flex items-center transition">
                     <i class="fa-solid fa-arrow-left mr-1.5"></i> Kembali ke Katalog
@@ -222,7 +217,6 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
                 
-                <!-- LEFT: Video Player + Detailed Tabs -->
                 <div class="lg:col-span-2 space-y-6">
                     <div class="relative w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-dark-border">
                         <iframe id="youtubeIframe" class="w-full h-full" src="" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -240,7 +234,6 @@
                             </button>
                         </div>
 
-                        <!-- 1. DESKRIPSI & CATATAN MATERI -->
                         <div class="space-y-3">
                             <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 flex items-center">
                                 <i class="fa-solid fa-align-left mr-2 text-brand-500"></i> Deskripsi & Rangkuman Materi
@@ -250,7 +243,6 @@
                             </div>
                         </div>
 
-                        <!-- 2. LINK TOOLS & RESOURCE -->
                         <div class="space-y-3">
                             <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 flex items-center">
                                 <i class="fa-solid fa-link mr-2 text-indigo-500"></i> Link Tools & Resource Terkait
@@ -258,7 +250,6 @@
                             <div id="currentLessonResources" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
                         </div>
 
-                        <!-- 3. BANTUAN DISKUSI GRUP WA -->
                         <div class="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/40 p-4 rounded-2xl flex items-center justify-between">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-lg shadow-sm">
@@ -276,7 +267,6 @@
                     </div>
                 </div>
 
-                <!-- RIGHT: Accordion Modul Materi -->
                 <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border shadow-sm overflow-hidden sticky top-20">
                     <div class="p-5 bg-slate-50 dark:bg-dark-border/40 border-b border-slate-100 dark:border-dark-border">
                         <div class="flex items-center justify-between text-xs font-bold mb-2">
@@ -355,7 +345,7 @@
         </section>
     </main>
 
-    <!-- MOBILE BOTTOM NAVIGATION (STYLE M-BANKING / DANA / OVO) -->
+    <!-- MOBILE BOTTOM NAVIGATION -->
     <nav id="mobileNav" style="display: none;" class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-dark-card/95 backdrop-blur-lg border-t border-slate-200 dark:border-dark-border px-2 py-2 flex justify-around items-center shadow-2xl">
         <button onclick="navigateTo('catalog')" id="mob-catalog" class="flex-1 flex flex-col items-center justify-center py-1 text-slate-400 dark:text-slate-500 transition">
             <i class="fa-solid fa-graduation-cap text-lg mb-0.5"></i>
@@ -379,9 +369,7 @@
         </a>
     </nav>
 
-    <!-- MODALS FOR ADMIN MANAGEMENT -->
-    
-    <!-- MODAL: TAMBAH KELAS -->
+    <!-- MODALS -->
     <div id="modalAddCourse" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 dark:border-dark-border">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-dark-border pb-3 mb-4">
@@ -413,7 +401,6 @@
         </div>
     </div>
 
-    <!-- MODAL: TAMBAH MATERI -->
     <div id="modalAddLesson" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 dark:border-dark-border max-h-[90vh] overflow-y-auto custom-scrollbar">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-dark-border pb-3 mb-4">
@@ -440,7 +427,7 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Link Tools / Resource 1 (Judul & URL)</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" id="resTitle1" placeholder="Nama Tool/File (cth: Salin Sheet)" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
+                        <input type="text" id="resTitle1" placeholder="Nama Tool/File" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                         <input type="url" id="resUrl1" placeholder="https://..." class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                     </div>
                 </div>
@@ -459,7 +446,6 @@
         </div>
     </div>
 
-    <!-- MODAL: TAMBAH TEMPLATE WEBAPP -->
     <div id="modalAddTemplate" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 dark:border-dark-border">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-dark-border pb-3 mb-4">
@@ -473,7 +459,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Kategori / Tech Stack</label>
-                    <input type="text" id="tplCategory" required placeholder="Contoh: Apps Script, Google Sheets, AI Bot" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
+                    <input type="text" id="tplCategory" required placeholder="Contoh: Apps Script, Google Sheets" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Deskripsi Singkat</label>
@@ -485,7 +471,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Prompt AI / Source Code Text</label>
-                    <textarea id="tplPromptText" rows="2" placeholder="Teks prompt untuk AI builder atau source link..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs"></textarea>
+                    <textarea id="tplPromptText" rows="2" placeholder="Teks prompt..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Link Live Preview / Demo</label>
@@ -499,7 +485,6 @@
         </div>
     </div>
 
-    <!-- MODAL: TAMBAH TOOL -->
     <div id="modalAddTool" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 dark:border-dark-border">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-dark-border pb-3 mb-4">
@@ -513,7 +498,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Kategori</label>
-                    <input type="text" id="toolCategory" required placeholder="Contoh: AI Writing, Cloud Hosting, Automasi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
+                    <input type="text" id="toolCategory" required placeholder="Contoh: AI Writing" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Deskripsi Singkat</label>
@@ -531,7 +516,6 @@
         </div>
     </div>
 
-    <!-- MODAL: TAMBAH PRODUK DIGITAL -->
     <div id="modalAddProduct" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-dark-card rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 dark:border-dark-border">
             <div class="flex items-center justify-between border-b border-slate-100 dark:border-dark-border pb-3 mb-4">
@@ -544,7 +528,7 @@
                     <input type="text" id="prodTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Harga (cth: Rp 99.000 / Free)</label>
+                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Harga</label>
                     <input type="text" id="prodPrice" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                 </div>
                 <div>
@@ -557,7 +541,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Link Checkout / Beli Produk</label>
-                    <input type="url" id="prodCheckoutUrl" required placeholder="https://orderonline.id/... atau link WA" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
+                    <input type="url" id="prodCheckoutUrl" required placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
                 </div>
                 <div class="flex justify-end space-x-2 pt-4 border-t border-slate-100 dark:border-dark-border">
                     <button type="button" onclick="closeModal('modalAddProduct')" class="px-4 py-2 text-xs text-slate-600 dark:text-slate-400 font-bold">Batal</button>
@@ -569,10 +553,8 @@
 
     <!-- APPLICATION JAVASCRIPT & BACKEND INTEGRATION -->
     <script>
-        // --- BACKEND API ENDPOINT ---
         const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyBHY2_f5cBilK-lf_DhBMgnhfpztJP8xxgWz-cO6LXKd82gHayiC7npUjwXCqikwqo/exec';
 
-        // --- APP STATE ---
         let coursesData = [];
         let templatesData = [];
         let toolsData = [];
@@ -584,13 +566,11 @@
         let activeCourseId = null;
         let activeLessonId = null;
 
-        // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
             checkSession();
         });
 
-        // --- HELPER CALL TO GOOGLE APPS SCRIPT API ---
         async function fetchGasApi(action, payload = {}) {
             try {
                 const response = await fetch(GAS_API_URL, {
@@ -613,7 +593,6 @@
             document.getElementById('loadingOverlay').classList.add('hidden');
         }
 
-        // --- FETCH ALL LMS DATA FROM SHEETS ---
         async function syncDataFromGas() {
             showLoading('Mengambil Data dari Spreadsheet...');
             const res = await fetchGasApi('getAllData');
@@ -630,7 +609,6 @@
                     updateWaLinks(waGroupUrl);
                 }
 
-                // Cache to LocalStorage for fallback
                 localStorage.setItem('setya_courses', JSON.stringify(coursesData));
                 localStorage.setItem('setya_templates', JSON.stringify(templatesData));
                 localStorage.setItem('setya_tools', JSON.stringify(toolsData));
@@ -656,7 +634,6 @@
             });
         }
 
-        // --- PASSWORD VISIBILITY TOGGLE ---
         function togglePasswordVisibility(inputId, iconId) {
             const input = document.getElementById(inputId);
             const icon = document.getElementById(iconId);
@@ -672,7 +649,6 @@
             }
         }
 
-        // --- THEME MANAGEMENT ---
         function initTheme() {
             if (localStorage.getItem('setya_theme') === 'dark' || (!('setya_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
@@ -687,7 +663,6 @@
             showToast(isDark ? 'Mode Gelap Aktif' : 'Mode Terang Aktif', 'info');
         }
 
-        // --- TOAST NOTIFICATION ---
         function showToast(message, type = 'info') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -727,7 +702,6 @@
             document.body.removeChild(tempInput);
         }
 
-        // --- AUTH & SESSION GATEKEEPER ---
         function checkSession() {
             const userBadge = document.getElementById('userInfoSection');
             const roleBadge = document.getElementById('roleBadge');
@@ -745,7 +719,7 @@
                 userBadge.style.display = 'flex';
                 roleBadge.textContent = currentUserRole === 'admin' ? 'Admin Instruktur' : 'Siswa Access';
                 
-                desktopNav.style.display = 'flex';
+                desktopNav.style.display = window.innerWidth >= 768 ? 'flex' : 'none';
                 mobileNav.style.display = 'flex';
                 headerWaBtn.style.display = 'inline-flex';
 
@@ -820,7 +794,6 @@
             checkSession();
         }
 
-        // --- NAVIGATION ROUTER ---
         function navigateTo(viewName) {
             if (!currentUserRole && viewName !== 'login') {
                 viewName = 'login';
@@ -830,7 +803,6 @@
                 document.getElementById(id).classList.add('hidden');
             });
 
-            // Update Mobile Bottom Nav & Desktop Nav Active Styles
             ['catalog', 'templates', 'tools', 'products'].forEach(tab => {
                 const navD = document.getElementById(`nav-${tab}`);
                 const navM = document.getElementById(`mob-${tab}`);
@@ -876,7 +848,6 @@
             }
         }
 
-        // --- CATALOG RENDERING ---
         function renderCatalog() {
             const grid = document.getElementById('courseGrid');
             grid.innerHTML = '';
@@ -928,7 +899,6 @@
             });
         }
 
-        // --- COURSE PLAYER LOGIC ---
         function openCoursePlayer(courseId) {
             activeCourseId = courseId;
             const course = coursesData.find(c => c.id === courseId);
@@ -1108,7 +1078,6 @@
             document.getElementById('playerProgressBar').style.width = `${pct}%`;
         }
 
-        // --- TEMPLATES SHOWCASE RENDERING ---
         function renderTemplates() {
             const grid = document.getElementById('templatesGrid');
             grid.innerHTML = '';
@@ -1160,7 +1129,6 @@
             });
         }
 
-        // --- TOOLS RENDERING ---
         function renderTools() {
             const grid = document.getElementById('toolsGrid');
             grid.innerHTML = '';
@@ -1188,7 +1156,6 @@
             });
         }
 
-        // --- PRODUCTS RENDERING ---
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
@@ -1226,7 +1193,6 @@
             });
         }
 
-        // --- MODAL & ADMIN CRUD FORM SUBMITS TO GAS ---
         function openAddCourseModal() { document.getElementById('modalAddCourse').classList.remove('hidden'); }
         function openAddLessonModal() { document.getElementById('modalAddLesson').classList.remove('hidden'); }
         function openAddTemplateModal() { document.getElementById('modalAddTemplate').classList.remove('hidden'); }
