@@ -2,13 +2,10 @@
 <html lang="id" class="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <title>Setyadigital Learning Hub</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -16,239 +13,115 @@
         extend: {
           colors: {
             brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              500: '#2563eb',
-              600: '#1d4ed8',
-              700: '#1e40af',
-              800: '#1e3a8a',
-              900: '#172554'
+              50:'#eff6ff',
+              100:'#dbeafe',
+              200:'#bfdbfe',
+              500:'#2563eb',
+              600:'#1d4ed8',
+              700:'#1e40af',
+              800:'#1e3a8a',
+              900:'#172554'
             },
             dark: {
-              bg: '#0b0f19',
-              card: '#151d30',
-              border: '#243049',
-              hover: '#1e2942'
+              bg:'#0b0f19',
+              card:'#151d30',
+              border:'#243049',
+              hover:'#1e2942'
             }
           }
         }
       }
-    };
+    }
   </script>
 
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-  >
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-  <!-- Google Font -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      -webkit-tap-highlight-color:transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .custom-scrollbar::-webkit-scrollbar{
+      width:6px;
     }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      overflow-x: hidden;
+    .custom-scrollbar::-webkit-scrollbar-track{
+      background:transparent;
     }
 
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
+    .custom-scrollbar::-webkit-scrollbar-thumb{
+      background:#cbd5e1;
+      border-radius:4px;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb{
+      background:#334155;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
+    .line-clamp-2{
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
     }
 
-    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #334155;
+    .line-clamp-3{
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
     }
 
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .line-clamp-3 {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    /* =========================================================
-       MOBILE LAYOUT
-       ========================================================= */
-
-    @media (max-width: 767px) {
+    /* =========================
+       MOBILE
+       ========================= */
+    @media (max-width:767px){
 
       /*
-        Bottom navigation tingginya sekitar 76-90px.
-        Kita beri ruang 170px agar konten terakhir
-        benar-benar bisa discroll melewati navigation.
+        Ruang bawah diperbesar supaya
+        fixed navigation tidak menutupi
+        tombol/card paling bawah.
       */
-      main {
-        padding-bottom: 170px !important;
-        scroll-padding-bottom: 170px !important;
+      main{
+        padding-bottom:140px !important;
       }
 
-      /*
-        Tambahan ruang khusus grid agar card terakhir
-        tidak berhenti tepat di belakang navigation.
-      */
-      #courseGrid,
-      #templatesGrid,
-      #toolsGrid,
-      #productsGrid {
-        padding-bottom: 80px !important;
+      #appHeader .max-w-7xl{
+        height:60px;
       }
 
-      /*
-        Tambahan margin card terakhir.
-      */
-      #courseGrid > div:last-child,
-      #templatesGrid > div:last-child,
-      #toolsGrid > div:last-child,
-      #productsGrid > div:last-child {
-        margin-bottom: 40px;
+      #appHeader #waHeader{
+        display:none !important;
       }
 
-      /*
-        Header mobile
-      */
-      #appHeader .max-w-7xl {
-        height: 60px;
+      #roleBadge{
+        display:none !important;
       }
 
-      #appHeader #waHeader {
-        display: none !important;
+      #mobileNav{
+        min-height:76px;
+        padding-bottom:calc(8px + env(safe-area-inset-bottom));
       }
 
-      #roleBadge {
-        display: none !important;
+      .mobile-nav-item.active{
+        background:#eff6ff;
+        color:#2563eb;
       }
 
-      /*
-        Bottom navigation
-      */
-      #mobileNav {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 9999;
-
-        min-height: 78px;
-
-        padding-top: 8px;
-        padding-right: 8px;
-        padding-left: 8px;
-        padding-bottom: calc(8px + env(safe-area-inset-bottom));
-
-        background: rgba(255, 255, 255, 0.97);
-
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-
-        border-top: 1px solid #e2e8f0;
-
-        box-shadow:
-          0 -8px 30px rgba(15, 23, 42, 0.10);
+      .dark .mobile-nav-item.active{
+        background:rgba(30,64,175,.25);
+        color:#7dd3fc;
       }
 
-      .dark #mobileNav {
-        background: rgba(21, 29, 48, 0.97);
-        border-top-color: #243049;
-      }
-
-      /*
-        Area tombol bottom nav
-      */
-      .mobile-nav-item {
-        min-width: 64px;
-        min-height: 58px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        padding: 6px 10px;
-
-        border-radius: 14px;
-
-        transition:
-          background-color 0.2s ease,
-          color 0.2s ease,
-          transform 0.15s ease;
-      }
-
-      .mobile-nav-item:active {
-        transform: scale(0.94);
-      }
-
-      .mobile-nav-item i {
-        line-height: 1;
-      }
-
-      .mobile-nav-item.active {
-        background: #eff6ff;
-        color: #2563eb;
-      }
-
-      .dark .mobile-nav-item.active {
-        background: rgba(30, 64, 175, 0.28);
-        color: #7dd3fc;
-      }
-
-      /*
-        Course card mobile
-      */
-      #courseGrid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      /*
-        Supaya tombol terakhir punya ruang ekstra
-      */
-      #courseGrid > div:last-child {
-        padding-bottom: 0;
-      }
-    }
-
-    /* =========================================================
-       SAFE AREA UNTUK HP DENGAN NOTCH / HOME INDICATOR
-       ========================================================= */
-
-    @supports (padding-bottom: env(safe-area-inset-bottom)) {
-      @media (max-width: 767px) {
-        #mobileNav {
-          padding-bottom: calc(
-            8px + env(safe-area-inset-bottom)
-          );
-        }
+      #courseGrid{
+        padding-bottom:20px;
       }
     }
   </style>
@@ -256,3970 +129,3787 @@
 
 <body class="bg-slate-50 dark:bg-dark-bg text-slate-800 dark:text-slate-100 min-h-screen transition-colors">
 
-  <!-- =========================================================
-       TOAST
-       ========================================================= -->
+<!-- TOAST -->
+<div id="toastContainer"
+     class="fixed top-5 right-5 z-[100] flex flex-col gap-3 pointer-events-none">
+</div>
 
-  <div
-    id="toastContainer"
-    class="fixed top-5 right-5 z-[10000] flex flex-col gap-3 pointer-events-none"
-  ></div>
+<!-- LOADING -->
+<div id="loadingOverlay"
+     class="fixed inset-0 z-[90] bg-slate-900/60 backdrop-blur-md hidden items-center justify-center">
 
+  <div class="bg-white dark:bg-dark-card rounded-3xl px-6 py-5 shadow-2xl flex items-center gap-4">
 
-  <!-- =========================================================
-       LOADING
-       ========================================================= -->
+    <div class="w-8 h-8 border-4 border-slate-200 border-t-brand-600 rounded-full animate-spin"></div>
 
-  <div
-    id="loadingOverlay"
-    class="fixed inset-0 z-[10000] bg-slate-900/60 backdrop-blur-md hidden items-center justify-center"
-  >
-    <div class="bg-white dark:bg-dark-card rounded-3xl px-6 py-5 shadow-2xl flex items-center gap-4">
-      <div class="w-8 h-8 border-4 border-slate-200 border-t-brand-600 rounded-full animate-spin"></div>
-      <span id="loadingText" class="text-xs font-bold">Memuat...</span>
-    </div>
+    <span id="loadingText" class="text-xs font-bold">
+      Memuat...
+    </span>
+
   </div>
+</div>
 
+<!-- =========================
+     HEADER
+     ========================= -->
+<header id="appHeader"
+        class="hidden sticky top-0 z-40 bg-white/95 dark:bg-dark-card/95 backdrop-blur-md border-b border-slate-200 dark:border-dark-border">
 
-  <!-- =========================================================
-       HEADER
-       ========================================================= -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
 
-  <header
-    id="appHeader"
-    class="hidden sticky top-0 z-40 bg-white/95 dark:bg-dark-card/95 backdrop-blur-md border-b border-slate-200 dark:border-dark-border"
-  >
+    <button onclick="navigateTo('catalog')"
+            class="flex items-center gap-3 text-left">
 
-    <div
-      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3"
-    >
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-extrabold text-xl shadow-md">
+        S
+      </div>
 
-      <!-- LOGO -->
+      <div>
+        <div class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Setya<span class="text-brand-600 dark:text-sky-400">digital</span>
+        </div>
 
-      <button
-        onclick="navigateTo('catalog')"
-        class="flex items-center gap-3 text-left"
-      >
+        <div class="text-[9px] text-slate-400 font-semibold tracking-widest uppercase -mt-1">
+          Academy & Hub
+        </div>
+      </div>
 
-        <div
-          class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-extrabold text-xl shadow-md"
-        >
+    </button>
+
+    <!-- DESKTOP NAV -->
+    <nav id="desktopNav"
+         class="hidden md:flex items-center gap-1 font-medium text-sm text-slate-600 dark:text-slate-300">
+
+      <button onclick="navigateTo('catalog')"
+              class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover">
+
+        <i class="fa-solid fa-graduation-cap mr-1.5 text-brand-500"></i>
+        Kelas
+
+      </button>
+
+      <button onclick="navigateTo('templates')"
+              class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover">
+
+        <i class="fa-solid fa-cubes-stacked mr-1.5 text-indigo-500"></i>
+        Template
+
+      </button>
+
+      <button onclick="navigateTo('tools')"
+              class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover">
+
+        <i class="fa-solid fa-toolbox mr-1.5 text-emerald-500"></i>
+        Tools
+
+      </button>
+
+      <button onclick="navigateTo('products')"
+              class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover">
+
+        <i class="fa-solid fa-bag-shopping mr-1.5 text-amber-500"></i>
+        Produk
+
+      </button>
+
+    </nav>
+
+    <div class="flex items-center gap-2">
+
+      <a id="waHeader"
+         target="_blank"
+         rel="noopener"
+         class="hidden sm:inline-flex items-center px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold">
+
+        <i class="fa-brands fa-whatsapp mr-1.5"></i>
+        Grup WhatsApp
+
+      </a>
+
+      <button onclick="toggleDarkMode()"
+              class="p-2.5 rounded-xl bg-slate-100 dark:bg-dark-border text-slate-600 dark:text-slate-300"
+              title="Tema">
+
+        <i class="fa-solid fa-moon dark:hidden"></i>
+
+        <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+
+      </button>
+
+      <span id="roleBadge"
+            class="hidden lg:inline-block px-2.5 py-1 rounded-full text-[10px] font-bold bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-sky-300">
+      </span>
+
+      <button onclick="logout()"
+              class="p-2.5 rounded-xl bg-slate-100 dark:bg-dark-border text-slate-600 dark:text-slate-300"
+              title="Keluar">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+</header>
+
+<!-- =========================
+     MOBILE NAV
+     ========================= -->
+<div id="mobileNav"
+     class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-dark-card/95 backdrop-blur-md border-t border-slate-200 dark:border-dark-border px-2 pt-2 flex justify-around shadow-[0_-8px_30px_rgba(15,23,42,0.08)]">
+
+  <button onclick="navigateTo('catalog')"
+          class="mobile-nav-item text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-500 dark:text-slate-400">
+
+    <i class="fa-solid fa-graduation-cap block text-center text-base mb-1"></i>
+    Kelas
+
+  </button>
+
+  <button onclick="navigateTo('templates')"
+          class="mobile-nav-item text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-500 dark:text-slate-400">
+
+    <i class="fa-solid fa-cubes-stacked block text-center text-base mb-1"></i>
+    Template
+
+  </button>
+
+  <button onclick="navigateTo('tools')"
+          class="mobile-nav-item text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-500 dark:text-slate-400">
+
+    <i class="fa-solid fa-toolbox block text-center text-base mb-1"></i>
+    Tools
+
+  </button>
+
+  <button onclick="navigateTo('products')"
+          class="mobile-nav-item text-[10px] font-bold px-3 py-1.5 rounded-xl text-slate-500 dark:text-slate-400">
+
+    <i class="fa-solid fa-bag-shopping block text-center text-base mb-1"></i>
+    Produk
+
+  </button>
+
+</div>
+
+<!-- =========================
+     MAIN
+     ========================= -->
+<main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+  <!-- LOGIN -->
+  <section id="viewLogin"
+           class="min-h-[80vh] flex items-center justify-center">
+
+    <div class="w-full max-w-md">
+
+      <div class="text-center mb-7">
+
+        <div class="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-700 to-brand-500 text-white flex items-center justify-center text-3xl font-black shadow-xl">
           S
         </div>
 
-        <div>
+        <h1 class="mt-4 text-2xl font-black">
+          Setyadigital Learning Hub
+        </h1>
 
-          <div class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Setya<span class="text-brand-600 dark:text-sky-400">digital</span>
-          </div>
+        <p class="mt-1 text-xs text-slate-500">
+          Masuk untuk mengakses kelas dan resource.
+        </p>
 
-          <div class="text-[9px] text-slate-400 font-semibold tracking-widest uppercase -mt-1">
-            Academy & Hub
-          </div>
+      </div>
+
+      <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border shadow-xl p-6">
+
+        <div class="grid grid-cols-2 bg-slate-100 dark:bg-dark-border rounded-xl p-1 mb-5">
+
+          <button id="tabStudent"
+                  onclick="setLoginRole('student')"
+                  class="py-2.5 rounded-lg text-xs font-bold bg-white dark:bg-dark-card text-brand-600 shadow-sm">
+
+            Siswa
+
+          </button>
+
+          <button id="tabAdmin"
+                  onclick="setLoginRole('admin')"
+                  class="py-2.5 rounded-lg text-xs font-bold text-slate-500">
+
+            Admin
+
+          </button>
 
         </div>
 
-      </button>
+        <form onsubmit="login(event)"
+              class="space-y-4">
 
+          <input type="hidden"
+                 id="loginRole"
+                 value="student">
 
-      <!-- DESKTOP NAV -->
+          <div>
 
-      <nav
-        id="desktopNav"
-        class="hidden md:flex items-center gap-1 font-medium text-sm text-slate-600 dark:text-slate-300"
-      >
+            <label class="block text-xs font-bold mb-1.5">
+              Email
+            </label>
 
-        <button
-          onclick="navigateTo('catalog')"
-          id="nav-catalog"
-          class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover"
-        >
-          <i class="fa-solid fa-graduation-cap mr-1.5 text-brand-500"></i>
-          Kelas
-        </button>
+            <input id="loginEmail"
+                   type="email"
+                   required
+                   autocomplete="username"
+                   class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-sm outline-none focus:ring-2 focus:ring-brand-500"
+                   placeholder="student@setyadigital.id">
 
-        <button
-          onclick="navigateTo('templates')"
-          id="nav-templates"
-          class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover"
-        >
-          <i class="fa-solid fa-cubes-stacked mr-1.5 text-indigo-500"></i>
-          Template
-        </button>
+          </div>
 
-        <button
-          onclick="navigateTo('tools')"
-          id="nav-tools"
-          class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover"
-        >
-          <i class="fa-solid fa-toolbox mr-1.5 text-emerald-500"></i>
-          Tools
-        </button>
+          <div>
 
-        <button
-          onclick="navigateTo('products')"
-          id="nav-products"
-          class="px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-dark-hover"
-        >
-          <i class="fa-solid fa-bag-shopping mr-1.5 text-amber-500"></i>
-          Produk
-        </button>
+            <label class="block text-xs font-bold mb-1.5">
+              Password
+            </label>
 
-      </nav>
+            <div class="relative">
 
+              <input id="loginPassword"
+                     type="password"
+                     required
+                     autocomplete="current-password"
+                     class="w-full px-4 py-3 pr-11 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-sm outline-none focus:ring-2 focus:ring-brand-500"
+                     placeholder="Masukkan password">
 
-      <!-- HEADER RIGHT -->
+              <button type="button"
+                      onclick="togglePassword()"
+                      class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
 
-      <div class="flex items-center gap-2">
+                <i id="eyeIcon"
+                   class="fa-solid fa-eye"></i>
 
-        <a
-          id="waHeader"
-          target="_blank"
-          rel="noopener"
-          class="hidden sm:inline-flex items-center px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold"
-        >
-          <i class="fa-brands fa-whatsapp mr-1.5"></i>
-          Grup WhatsApp
-        </a>
+              </button>
 
-        <button
-          onclick="toggleDarkMode()"
-          class="p-2.5 rounded-xl bg-slate-100 dark:bg-dark-border text-slate-600 dark:text-slate-300"
-          title="Tema"
-        >
-          <i class="fa-solid fa-moon dark:hidden"></i>
-          <i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
-        </button>
+            </div>
 
-        <span
-          id="roleBadge"
-          class="hidden lg:inline-block px-2.5 py-1 rounded-full text-[10px] font-bold bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-sky-300"
-        ></span>
+          </div>
 
-        <button
-          onclick="logout()"
-          class="p-2.5 rounded-xl bg-slate-100 dark:bg-dark-border text-slate-600 dark:text-slate-300"
-          title="Keluar"
-        >
-          <i class="fa-solid fa-right-from-bracket"></i>
-        </button>
+          <button class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg text-sm">
+            Masuk ke LMS
+          </button>
+
+        </form>
+
+        <p id="loginHint"
+           class="text-[10px] text-slate-400 text-center mt-4">
+
+          Gunakan akun siswa yang diberikan.
+
+        </p>
 
       </div>
 
     </div>
 
-  </header>
+  </section>
 
+  <!-- =========================
+       CATALOG
+       ========================= -->
+  <section id="viewCatalog"
+           class="hidden space-y-7">
 
-  <!-- =========================================================
-       MOBILE BOTTOM NAVIGATION
-       ========================================================= -->
+    <div class="relative rounded-3xl bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-700 text-white p-6 sm:p-10 overflow-hidden shadow-xl">
 
-  <div
-    id="mobileNav"
-    class="md:hidden fixed bottom-0 left-0 right-0 z-[9999] bg-white/95 dark:bg-dark-card/95 backdrop-blur-md border-t border-slate-200 dark:border-dark-border px-2 pt-2 pb-[calc(8px+env(safe-area-inset-bottom))] flex justify-around shadow-[0_-8px_30px_rgba(15,23,42,0.08)]"
-  >
+      <div class="relative z-10 max-w-2xl">
 
-    <button
-      onclick="navigateTo('catalog')"
-      class="mobile-nav-item text-[10px] font-bold text-slate-500 dark:text-slate-400"
-    >
-      <i class="fa-solid fa-graduation-cap block text-center text-base mb-1"></i>
-      Kelas
-    </button>
+        <span class="inline-flex px-3 py-1 rounded-full bg-white/20 text-xs font-bold backdrop-blur">
+          Setyadigital Learning Hub
+        </span>
 
-    <button
-      onclick="navigateTo('templates')"
-      class="mobile-nav-item text-[10px] font-bold text-slate-500 dark:text-slate-400"
-    >
-      <i class="fa-solid fa-cubes-stacked block text-center text-base mb-1"></i>
-      Template
-    </button>
+        <h1 class="mt-3 text-2xl sm:text-4xl font-black leading-tight">
+          Bangun Ekosistem Digital & Kuasai Skill E-Course
+        </h1>
 
-    <button
-      onclick="navigateTo('tools')"
-      class="mobile-nav-item text-[10px] font-bold text-slate-500 dark:text-slate-400"
-    >
-      <i class="fa-solid fa-toolbox block text-center text-base mb-1"></i>
-      Tools
-    </button>
+        <p class="mt-3 text-xs sm:text-sm text-brand-100 leading-relaxed">
+          Akses materi video, template webapp, tools, dan produk digital dari satu tempat.
+        </p>
 
-    <button
-      onclick="navigateTo('products')"
-      class="mobile-nav-item text-[10px] font-bold text-slate-500 dark:text-slate-400"
-    >
-      <i class="fa-solid fa-bag-shopping block text-center text-base mb-1"></i>
-      Produk
-    </button>
+        <div class="pt-5 flex flex-wrap gap-3">
 
-  </div>
+          <a id="waHero"
+             target="_blank"
+             class="inline-flex items-center px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold">
 
+            <i class="fa-brands fa-whatsapp mr-2"></i>
+            Join WhatsApp Group
 
-  <!-- =========================================================
-       MAIN
-       ========================================================= -->
+          </a>
 
-  <main
-    class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8"
-  >
+          <button onclick="navigateTo('templates')"
+                  class="inline-flex items-center px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold">
 
+            <i class="fa-solid fa-cubes-stacked mr-2"></i>
+            Template WebApp
 
-    <!-- =======================================================
-         LOGIN
-         ======================================================= -->
-
-    <section
-      id="viewLogin"
-      class="min-h-[80vh] flex items-center justify-center"
-    >
-
-      <div class="w-full max-w-md">
-
-        <div class="text-center mb-7">
-
-          <div
-            class="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-700 to-brand-500 text-white flex items-center justify-center text-3xl font-black shadow-xl"
-          >
-            S
-          </div>
-
-          <h1 class="mt-4 text-2xl font-black">
-            Setyadigital Learning Hub
-          </h1>
-
-          <p class="mt-1 text-xs text-slate-500">
-            Masuk untuk mengakses kelas dan resource.
-          </p>
+          </button>
 
         </div>
 
+      </div>
 
-        <div
-          class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border shadow-xl p-6"
-        >
+      <i class="fa-solid fa-laptop-code absolute -right-8 -bottom-12 opacity-10 text-[260px]"></i>
 
-          <div
-            class="grid grid-cols-2 bg-slate-100 dark:bg-dark-border rounded-xl p-1 mb-5"
-          >
+    </div>
 
-            <button
-              id="tabStudent"
-              onclick="setLoginRole('student')"
-              class="py-2.5 rounded-lg text-xs font-bold bg-white dark:bg-dark-card text-brand-600 shadow-sm"
-            >
-              Siswa
-            </button>
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
 
-            <button
-              id="tabAdmin"
-              onclick="setLoginRole('admin')"
-              class="py-2.5 rounded-lg text-xs font-bold text-slate-500"
-            >
-              Admin
-            </button>
+      <div>
+
+        <h2 class="text-xl sm:text-2xl font-black">
+          Daftar Modul Kelas
+        </h2>
+
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          Pilih course yang ingin kamu pelajari.
+        </p>
+
+      </div>
+
+      <button id="addCourseBtn"
+              onclick="openCourseModal()"
+              class="hidden px-4 py-2.5 bg-brand-600 text-white text-xs font-bold rounded-xl">
+
+        <i class="fa-solid fa-plus mr-1.5"></i>
+        Tambah Kelas
+
+      </button>
+
+    </div>
+
+    <div id="courseGrid"
+         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div>
+
+  </section>
+
+  <!-- =========================
+       PLAYER
+       ========================= -->
+  <section id="viewPlayer"
+           class="hidden space-y-5">
+
+    <button onclick="navigateTo('catalog')"
+            class="text-xs font-bold text-brand-600">
+
+      <i class="fa-solid fa-arrow-left mr-1.5"></i>
+      Kembali ke kelas
+
+    </button>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-5">
+
+      <div class="space-y-5">
+
+        <div class="bg-black rounded-3xl overflow-hidden aspect-video shadow-xl">
+
+          <iframe id="youtubeIframe"
+                  class="w-full h-full"
+                  src=""
+                  title="Video pembelajaran"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border p-5 sm:p-6">
+
+          <div id="currentLessonModule"
+               class="text-[10px] font-extrabold uppercase tracking-wider text-brand-600">
+          </div>
+
+          <h2 id="currentLessonTitle"
+              class="text-xl sm:text-2xl font-black mt-1">
+          </h2>
+
+          <div class="mt-5 pt-5 border-t border-slate-100 dark:border-dark-border">
+
+            <h3 class="text-xs font-black uppercase tracking-wider">
+              Catatan Materi
+            </h3>
+
+            <p id="currentLessonNotes"
+               class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-7 whitespace-pre-wrap">
+            </p>
 
           </div>
 
+          <div class="mt-5 pt-5 border-t border-slate-100 dark:border-dark-border">
 
-          <form
-            onsubmit="login(event)"
-            class="space-y-4"
-          >
+            <h3 class="text-xs font-black uppercase tracking-wider mb-3">
+              Resources
+            </h3>
 
-            <input
-              type="hidden"
-              id="loginRole"
-              value="student"
-            >
-
-            <div>
-
-              <label class="block text-xs font-bold mb-1.5">
-                Email
-              </label>
-
-              <input
-                id="loginEmail"
-                type="email"
-                required
-                autocomplete="username"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-sm outline-none focus:ring-2 focus:ring-brand-500"
-                placeholder="student@setyadigital.id"
-              >
-
+            <div id="currentLessonResources"
+                 class="space-y-2">
             </div>
 
+          </div>
 
-            <div>
+        </div>
 
-              <label class="block text-xs font-bold mb-1.5">
-                Password
-              </label>
+      </div>
 
-              <div class="relative">
+      <aside class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border overflow-hidden lg:sticky lg:top-20 h-fit">
 
-                <input
-                  id="loginPassword"
-                  type="password"
-                  required
-                  autocomplete="current-password"
-                  class="w-full px-4 py-3 pr-11 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-sm outline-none focus:ring-2 focus:ring-brand-500"
-                  placeholder="Masukkan password"
-                >
+        <div class="p-5 bg-slate-50 dark:bg-dark-border/40 border-b border-slate-100 dark:border-dark-border">
+
+          <div class="flex justify-between text-xs font-bold mb-2">
+
+            <span>
+              Progress Kelas
+            </span>
+
+            <span id="playerProgressPct"
+                  class="text-brand-600">
+              0%
+            </span>
+
+          </div>
+
+          <div class="h-2 bg-slate-200 dark:bg-dark-border rounded-full overflow-hidden">
+
+            <div id="playerProgressBar"
+                 class="h-full bg-brand-600 rounded-full"
+                 style="width:0%">
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="adminAddLessonBox"
+             class="hidden p-3 border-b border-slate-100 dark:border-dark-border">
+
+          <button onclick="openLessonModal()"
+                  class="w-full py-2.5 bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-sky-400 text-xs font-bold rounded-xl">
+
+            <i class="fa-solid fa-plus mr-1.5"></i>
+            Tambah Materi
+
+          </button>
+
+        </div>
+
+        <div id="moduleAccordionList"
+             class="p-3 divide-y divide-slate-100 dark:divide-dark-border max-h-[600px] overflow-y-auto custom-scrollbar">
+        </div>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       TEMPLATES
+       ========================= -->
+  <section id="viewTemplates"
+           class="hidden space-y-6">
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+
+      <div>
+
+        <h2 class="text-xl sm:text-2xl font-black">
+          Koleksi Template WebApp & Spreadsheet
+        </h2>
+
+        <p class="text-xs text-slate-500 mt-1">
+          Template dan prompt siap digunakan.
+        </p>
+
+      </div>
+
+      <button id="addTemplateBtn"
+              onclick="openTemplateModal()"
+              class="hidden px-4 py-2.5 bg-indigo-600 text-white text-xs font-bold rounded-xl">
+
+        <i class="fa-solid fa-plus mr-1.5"></i>
+        Tambah Template
+
+      </button>
+
+    </div>
+
+    <div id="templatesGrid"
+         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div>
+
+  </section>
+
+  <!-- =========================
+       TOOLS
+       ========================= -->
+  <section id="viewTools"
+           class="hidden space-y-6">
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+
+      <div>
+
+        <h2 class="text-xl sm:text-2xl font-black">
+          Koleksi Tools & AI Toolkit
+        </h2>
+
+        <p class="text-xs text-slate-500 mt-1">
+          Tools pilihan Setyadigital.
+        </p>
+
+      </div>
+
+      <button id="addToolBtn"
+              onclick="openToolModal()"
+              class="hidden px-4 py-2.5 bg-emerald-600 text-white text-xs font-bold rounded-xl">
+
+        <i class="fa-solid fa-plus mr-1.5"></i>
+        Tambah Tool
+
+      </button>
+
+    </div>
+
+    <div id="toolsGrid"
+         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div>
+
+  </section>
+
+  <!-- =========================
+       PRODUCTS
+       ========================= -->
+  <section id="viewProducts"
+           class="hidden space-y-6">
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+
+      <div>
+
+        <h2 class="text-xl sm:text-2xl font-black">
+          Produk Digital
+        </h2>
+
+        <p class="text-xs text-slate-500 mt-1">
+          Produk digital pilihan Setyadigital.
+        </p>
+
+      </div>
+
+      <button id="addProductBtn"
+              onclick="openProductModal()"
+              class="hidden px-4 py-2.5 bg-amber-500 text-white text-xs font-bold rounded-xl">
+
+        <i class="fa-solid fa-plus mr-1.5"></i>
+        Tambah Produk
+
+      </button>
+
+    </div>
+
+    <div id="productsGrid"
+         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div>
+
+  </section>
+
+</main>
+
+<!-- =========================
+     GENERIC MODAL
+     ========================= -->
+<div id="modal"
+     class="fixed inset-0 z-[80] bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+
+  <div class="bg-white dark:bg-dark-card rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+
+    <div class="p-5 border-b border-slate-100 dark:border-dark-border flex justify-between items-center">
+
+      <h3 id="modalTitle"
+          class="font-black text-lg">
+      </h3>
+
+      <button onclick="closeModal()"
+              class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-dark-border">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </div>
+
+    <form id="modalForm"
+          class="p-5 space-y-4">
+    </form>
+
+  </div>
+</div>
+
+<script>
+
+/* ============================================================
+   SETYADIGITAL LMS
+   ============================================================ */
+
+const SUPABASE_URL =
+  'https://nrtrhupymmkbdirdrffu.supabase.co';
+
+const SUPABASE_ANON_KEY =
+  'sb_publishable_nI1jmo11S13XOEgbvxOt0w_2UwCzvQH';
+
+const sb =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+let session = null;
+let profile = null;
+let currentRole = null;
+
+let courses = [];
+let templates = [];
+let tools = [];
+let products = [];
+
+let activeCourseId = null;
+let activeLessonId = null;
+
+const WA_GROUP_URL =
+  'https://chat.whatsapp.com/FVg6eKukPJS1cCZQk4wsBj?s=cl&p=a&ilr=1&amv=0';
+
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+  initTheme();
+  bindWa();
+
+  if (SUPABASE_URL.includes('PASTE_')) {
+
+    showLogin();
+
+    toast(
+      'Isi SUPABASE_URL dan SUPABASE_ANON_KEY dulu.',
+      'error'
+    );
+
+    return;
+  }
+
+  const {
+    data: { session: s }
+  } = await sb.auth.getSession();
+
+  await applySession(s);
+
+  sb.auth.onAuthStateChange(async (_event, s2) => {
+
+    setTimeout(() => {
+      applySession(s2);
+    }, 0);
+
+  });
+
+});
+
+
+/* ============================================================
+   SESSION
+   ============================================================ */
+
+async function applySession(s) {
+
+  session = s;
+
+  if (!s) {
+
+    showLogin();
+
+    return;
+  }
+
+  const {
+    data,
+    error
+  } = await sb
+    .from('profiles')
+    .select('id,role,display_name')
+    .eq('id', s.user.id)
+    .maybeSingle();
+
+  if (error || !data) {
+
+    await sb.auth.signOut();
+
+    showLogin();
+
+    toast(
+      'Profil user belum terdaftar di profiles.',
+      'error'
+    );
+
+    return;
+  }
+
+  profile = data;
+  currentRole = data.role;
+
+  document
+    .getElementById('viewLogin')
+    .classList.add('hidden');
+
+  document
+    .getElementById('appHeader')
+    .classList.remove('hidden');
+
+  document
+    .getElementById('roleBadge')
+    .textContent =
+      currentRole === 'admin'
+        ? 'Admin Instruktur'
+        : 'Siswa Access';
+
+  document
+    .getElementById('addCourseBtn')
+    .classList.toggle(
+      'hidden',
+      currentRole !== 'admin'
+    );
+
+  document
+    .getElementById('addTemplateBtn')
+    .classList.toggle(
+      'hidden',
+      currentRole !== 'admin'
+    );
+
+  document
+    .getElementById('addToolBtn')
+    .classList.toggle(
+      'hidden',
+      currentRole !== 'admin'
+    );
+
+  document
+    .getElementById('addProductBtn')
+    .classList.toggle(
+      'hidden',
+      currentRole !== 'admin'
+    );
+
+  document
+    .getElementById('adminAddLessonBox')
+    .classList.toggle(
+      'hidden',
+      currentRole !== 'admin'
+    );
+
+  await loadAllData();
+
+  navigateTo('catalog');
+
+}
+
+
+/* ============================================================
+   LOGIN
+   ============================================================ */
+
+async function login(e) {
+
+  e.preventDefault();
+
+  const email =
+    document
+      .getElementById('loginEmail')
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById('loginPassword')
+      .value;
+
+  loading(true, 'Memverifikasi akun...');
+
+  const {
+    data,
+    error
+  } =
+    await sb.auth.signInWithPassword({
+      email,
+      password
+    });
+
+  loading(false);
+
+  if (error) {
+
+    toast(
+      error.message || 'Login gagal.',
+      'error'
+    );
+
+    return;
+  }
+
+  const {
+    data: prof,
+    error: profError
+  } =
+    await sb
+      .from('profiles')
+      .select('role')
+      .eq('id', data.user.id)
+      .maybeSingle();
+
+  if (
+    profError ||
+    !prof ||
+    prof.role !==
+      document.getElementById('loginRole').value
+  ) {
+
+    await sb.auth.signOut();
+
+    toast(
+      'Role login tidak sesuai dengan akun ini.',
+      'error'
+    );
+
+    return;
+  }
+
+  await applySession(data.session);
+
+  document
+    .getElementById('loginPassword')
+    .value = '';
+
+}
+
+
+async function logout() {
+
+  await sb.auth.signOut();
+
+  session = null;
+  profile = null;
+  currentRole = null;
+
+  showLogin();
+
+  toast(
+    'Anda telah keluar.',
+    'info'
+  );
+
+}
+
+
+function setLoginRole(role) {
+
+  document
+    .getElementById('loginRole')
+    .value = role;
+
+  document
+    .getElementById('tabStudent')
+    .className =
+      role === 'student'
+        ? 'py-2.5 rounded-lg text-xs font-bold bg-white dark:bg-dark-card text-brand-600 shadow-sm'
+        : 'py-2.5 rounded-lg text-xs font-bold text-slate-500';
+
+  document
+    .getElementById('tabAdmin')
+    .className =
+      role === 'admin'
+        ? 'py-2.5 rounded-lg text-xs font-bold bg-white dark:bg-dark-card text-brand-600 shadow-sm'
+        : 'py-2.5 rounded-lg text-xs font-bold text-slate-500';
+
+  document
+    .getElementById('loginHint')
+    .textContent =
+      role === 'admin'
+        ? 'Gunakan akun admin.'
+        : 'Gunakan akun siswa yang diberikan.';
+
+}
+
+
+function togglePassword() {
+
+  const x =
+    document.getElementById('loginPassword');
+
+  const i =
+    document.getElementById('eyeIcon');
+
+  x.type =
+    x.type === 'password'
+      ? 'text'
+      : 'password';
+
+  i.className =
+    x.type === 'password'
+      ? 'fa-solid fa-eye'
+      : 'fa-solid fa-eye-slash';
+
+}
+
+
+/* ============================================================
+   LOAD DATA
+   ============================================================ */
+
+async function loadAllData() {
+
+  loading(
+    true,
+    'Mengambil data dari Supabase...'
+  );
+
+  const [
+    c,
+    m,
+    l,
+    r,
+    t,
+    tl,
+    p
+  ] = await Promise.all([
+
+    sb
+      .from('courses')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      }),
+
+    sb
+      .from('modules')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      }),
+
+    sb
+      .from('lessons')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      }),
+
+    sb
+      .from('lesson_resources')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      }),
+
+    sb
+      .from('templates')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      }),
+
+    sb
+      .from('tools')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      }),
+
+    sb
+      .from('products')
+      .select('*')
+      .order('sort_order', {
+        ascending: true
+      })
+
+  ]);
+
+  loading(false);
+
+  for (
+    const x of [
+      c,
+      m,
+      l,
+      r,
+      t,
+      tl,
+      p
+    ]
+  ) {
+
+    if (x.error) {
+      console.error(x.error);
+    }
+
+  }
+
+  courses =
+    (c.data || []).map(course => {
+
+      const mods =
+        (m.data || [])
+          .filter(
+            x =>
+              x.course_id ===
+              course.id
+          )
+          .sort(byOrder);
+
+      const lessons =
+        mods.flatMap(mod =>
+
+          (l.data || [])
+            .filter(
+              x =>
+                x.module_id ===
+                mod.id
+            )
+            .sort(byOrder)
+            .map(ls => ({
+
+              ...ls,
+
+              module:
+                mod.title,
+
+              module_id:
+                mod.id,
+
+              resources:
+                (r.data || [])
+                  .filter(
+                    z =>
+                      z.lesson_id ===
+                      ls.id
+                  )
+                  .sort(byOrder)
+
+            }))
+
+        );
+
+      return {
+        ...course,
+        modules: mods,
+        lessons
+      };
+
+    });
+
+  templates = t.data || [];
+  tools = tl.data || [];
+  products = p.data || [];
+
+  renderCatalog();
+  renderTemplates();
+  renderTools();
+  renderProducts();
+
+}
+
+
+function byOrder(a, b) {
+
+  return (
+    (a.sort_order || 0) -
+    (b.sort_order || 0)
+  );
+
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+function navigateTo(view) {
+
+  if (!session) {
+
+    showLogin();
+
+    return;
+  }
+
+  [
+    'viewCatalog',
+    'viewPlayer',
+    'viewTemplates',
+    'viewTools',
+    'viewProducts'
+  ]
+    .forEach(id => {
+
+      document
+        .getElementById(id)
+        .classList.add('hidden');
+
+    });
+
+  document
+    .querySelectorAll('.mobile-nav-item')
+    .forEach(b => {
+
+      b.classList.remove('active');
+
+    });
+
+  const activeNav =
+    document.querySelector(
+      `.mobile-nav-item[onclick="navigateTo('${view}')"]`
+    );
+
+  if (activeNav) {
+    activeNav.classList.add('active');
+  }
+
+  const map = {
+
+    catalog:
+      'viewCatalog',
+
+    player:
+      'viewPlayer',
+
+    templates:
+      'viewTemplates',
+
+    tools:
+      'viewTools',
+
+    products:
+      'viewProducts'
+
+  };
+
+  document
+    .getElementById(map[view])
+    .classList.remove('hidden');
+
+  if (view === 'catalog')
+    renderCatalog();
+
+  if (view === 'templates')
+    renderTemplates();
+
+  if (view === 'tools')
+    renderTools();
+
+  if (view === 'products')
+    renderProducts();
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+function showLogin() {
+
+  document
+    .getElementById('appHeader')
+    .classList.add('hidden');
+
+  [
+    'viewCatalog',
+    'viewPlayer',
+    'viewTemplates',
+    'viewTools',
+    'viewProducts'
+  ]
+    .forEach(id => {
+
+      document
+        .getElementById(id)
+        .classList.add('hidden');
+
+    });
+
+  document
+    .getElementById('viewLogin')
+    .classList.remove('hidden');
+
+}
+
+
+/* ============================================================
+   URL / YOUTUBE
+   ============================================================ */
+
+function openUrl(url) {
+
+  if (
+    url &&
+    url !== '#'
+  ) {
+
+    window.open(
+      url,
+      '_blank',
+      'noopener,noreferrer'
+    );
+
+  }
+
+}
+
+
+function esc(s) {
+
+  return String(s ?? '')
+    .replace(
+      /[&<>"']/g,
+      m =>
+        ({
+          '&':'&amp;',
+          '<':'&lt;',
+          '>':'&gt;',
+          '"':'&quot;',
+          "'":'&#039;'
+        }[m])
+    );
+
+}
+
+
+function youtubeId(url) {
+
+  if (!url)
+    return '';
+
+  try {
+
+    if (
+      url.includes(
+        'youtu.be/'
+      )
+    ) {
+
+      return url
+        .split('youtu.be/')[1]
+        .split(/[?&]/)[0];
+
+    }
+
+    const u =
+      new URL(url);
+
+    if (
+      u.hostname.includes(
+        'youtube.com'
+      )
+    ) {
+
+      return (
+        u.searchParams.get('v') ||
+        u.pathname
+          .split('/')
+          .filter(Boolean)
+          .pop()
+      );
+
+    }
+
+  } catch(e) {}
+
+  return url.trim();
+
+}
+
+
+function youtubeEmbed(url) {
+
+  const id =
+    youtubeId(url);
+
+  return id
+    ? `https://www.youtube.com/embed/${encodeURIComponent(id)}?rel=0`
+    : '';
+
+}
+
+
+/* ============================================================
+   CATALOG
+   ============================================================ */
+
+function renderCatalog() {
+
+  const g =
+    document.getElementById(
+      'courseGrid'
+    );
+
+  g.innerHTML = '';
+
+  const list =
+    courses.filter(
+      c =>
+        c.status === 'published' ||
+        currentRole === 'admin'
+    );
+
+  if (!list.length) {
+
+    g.innerHTML =
+      `
+      <div class="col-span-full py-14 text-center text-sm text-slate-400">
+        Belum ada kelas yang dipublikasikan.
+      </div>
+      `;
+
+    return;
+  }
+
+  list.forEach(c => {
+
+    const lessons =
+      c.lessons?.length || 0;
+
+    g.insertAdjacentHTML(
+      'beforeend',
+      `
+
+      <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col">
+
+        <div class="relative h-48 bg-slate-200 dark:bg-dark-border">
+
+          ${
+            c.cover_url
+
+              ? `
+                <img
+                  src="${esc(c.cover_url)}"
+                  class="w-full h-full object-cover"
+                  alt="${esc(c.title)}">
+                `
+
+              : `
+                <div class="w-full h-full flex items-center justify-center text-slate-400">
+                  <i class="fa-solid fa-graduation-cap text-5xl"></i>
+                </div>
+                `
+          }
+
+          <span class="absolute top-3 left-3 bg-slate-900/80 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-full">
+            ${esc(c.category)}
+          </span>
+
+          ${
+            currentRole === 'admin'
+
+              ? `
+                <span class="absolute top-3 right-3 bg-white/90 text-slate-800 text-[9px] font-black px-2 py-1 rounded-full">
+                  ${esc(c.status)}
+                </span>
+                `
+
+              : ''
+          }
+
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+
+          <h3 class="text-base font-black">
+            ${esc(c.title)}
+          </h3>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3 leading-relaxed">
+            ${esc(c.description || '')}
+          </p>
+
+          <div class="mt-4 text-[10px] text-slate-400">
+            ${lessons} materi video
+          </div>
+
+          <button
+            onclick="openCourse('${c.id}')"
+            class="mt-5 w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl">
+
+            <i class="fa-solid fa-play mr-1.5"></i>
+            Buka Materi
+
+          </button>
+
+          ${
+            currentRole === 'admin'
+
+              ? `
+                <div class="grid grid-cols-2 gap-2 mt-2">
+
+                  <button
+                    onclick="openCourseModal('${c.id}')"
+                    class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold">
+
+                    <i class="fa-solid fa-pen mr-1"></i>
+                    Edit
+
+                  </button>
+
+                  <button
+                    onclick="deleteCourse('${c.id}')"
+                    class="py-2 bg-rose-50 text-rose-600 dark:bg-rose-950/30 rounded-xl text-xs font-bold">
+
+                    <i class="fa-solid fa-trash mr-1"></i>
+                    Hapus
+
+                  </button>
+
+                </div>
+                `
+
+              : ''
+          }
+
+        </div>
+
+      </div>
+
+      `
+    );
+
+  });
+
+}
+
+
+/* ============================================================
+   COURSE / PLAYER
+   ============================================================ */
+
+function openCourse(id) {
+
+  activeCourseId = id;
+
+  const c =
+    courses.find(
+      x => x.id === id
+    );
+
+  if (!c)
+    return;
+
+  navigateTo('player');
+
+  renderModules(c);
+
+  if (c.lessons?.length) {
+
+    loadLesson(
+      c.lessons[0].id
+    );
+
+  } else {
+
+    clearLesson();
+
+  }
+
+}
+
+
+function renderModules(c) {
+
+  const box =
+    document.getElementById(
+      'moduleAccordionList'
+    );
+
+  box.innerHTML = '';
+
+  if (!c.lessons?.length) {
+
+    box.innerHTML =
+      `
+      <div class="p-4 text-xs text-center text-slate-400">
+        Belum ada materi.
+      </div>
+      `;
+
+    return;
+  }
+
+  c.modules.forEach(mod => {
+
+    const ls =
+      c.lessons
+        .filter(
+          x =>
+            x.module_id ===
+            mod.id
+        )
+        .sort(byOrder);
+
+    box.insertAdjacentHTML(
+      'beforeend',
+      `
+
+      <div class="py-3">
+
+        <div class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+          ${esc(mod.title)}
+        </div>
+
+        <div class="mt-1 space-y-1">
+
+          ${
+            ls.map(x => `
+
+              <div class="flex items-center gap-1">
 
                 <button
-                  type="button"
-                  onclick="togglePassword()"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
-                >
-                  <i
-                    id="eyeIcon"
-                    class="fa-solid fa-eye"
-                  ></i>
+                  onclick="loadLesson('${x.id}')"
+                  id="lessonBtn-${x.id}"
+                  class="flex-1 min-w-0 text-left px-3 py-2.5 rounded-xl flex justify-between text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-hover">
+
+                  <span class="truncate">
+                    ${esc(x.title)}
+                  </span>
+
+                  <i class="fa-solid fa-play text-[9px] opacity-40 ml-2"></i>
+
                 </button>
+
+                ${
+                  currentRole === 'admin'
+
+                    ? `
+
+                      <button
+                        onclick="openLessonModal('${x.id}')"
+                        class="w-8 h-8 shrink-0 rounded-lg bg-slate-100 dark:bg-dark-border text-slate-500"
+                        title="Edit">
+
+                        <i class="fa-solid fa-pen text-[10px]"></i>
+
+                      </button>
+
+                      <button
+                        onclick="deleteLesson('${x.id}')"
+                        class="w-8 h-8 shrink-0 rounded-lg bg-rose-50 dark:bg-rose-950/30 text-rose-600"
+                        title="Hapus">
+
+                        <i class="fa-solid fa-trash text-[10px]"></i>
+
+                      </button>
+
+                      `
+
+                    : ''
+                }
 
               </div>
 
-            </div>
-
-
-            <button
-              class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg text-sm"
-            >
-              Masuk ke LMS
-            </button>
-
-          </form>
-
-
-          <p
-            id="loginHint"
-            class="text-[10px] text-slate-400 text-center mt-4"
-          >
-            Gunakan akun siswa yang diberikan.
-          </p>
+            `).join('')
+          }
 
         </div>
 
       </div>
 
-    </section>
-
-
-    <!-- =======================================================
-         CATALOG
-         ======================================================= -->
-
-    <section
-      id="viewCatalog"
-      class="hidden space-y-7"
-    >
-
-      <div
-        class="relative rounded-3xl bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-700 text-white p-6 sm:p-10 overflow-hidden shadow-xl"
-      >
-
-        <div class="relative z-10 max-w-2xl">
-
-          <span
-            class="inline-flex px-3 py-1 rounded-full bg-white/20 text-xs font-bold backdrop-blur"
-          >
-            Setyadigital Learning Hub
-          </span>
-
-          <h1
-            class="mt-3 text-2xl sm:text-4xl font-black leading-tight"
-          >
-            Bangun Ekosistem Digital & Kuasai Skill E-Course
-          </h1>
-
-          <p
-            class="mt-3 text-xs sm:text-sm text-brand-100 leading-relaxed"
-          >
-            Akses materi video, template webapp, tools, dan produk digital dari satu tempat.
-          </p>
-
-          <div class="pt-5 flex flex-wrap gap-3">
-
-            <a
-              id="waHero"
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold"
-            >
-              <i class="fa-brands fa-whatsapp mr-2"></i>
-              Join WhatsApp Group
-            </a>
-
-            <button
-              onclick="navigateTo('templates')"
-              class="inline-flex items-center px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold"
-            >
-              <i class="fa-solid fa-cubes-stacked mr-2"></i>
-              Template WebApp
-            </button>
-
-          </div>
-
-        </div>
-
-        <i
-          class="fa-solid fa-laptop-code absolute -right-8 -bottom-12 opacity-10 text-[260px]"
-        ></i>
-
-      </div>
-
-
-      <div
-        class="flex flex-col sm:flex-row sm:items-end justify-between gap-4"
-      >
-
-        <div>
-
-          <h2 class="text-xl sm:text-2xl font-black">
-            Daftar Modul Kelas
-          </h2>
-
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Pilih course yang ingin kamu pelajari.
-          </p>
-
-        </div>
-
-
-        <button
-          id="addCourseBtn"
-          onclick="openCourseModal()"
-          class="hidden px-4 py-2.5 bg-brand-600 text-white text-xs font-bold rounded-xl"
-        >
-          <i class="fa-solid fa-plus mr-1.5"></i>
-          Tambah Kelas
-        </button>
-
-      </div>
-
-
-      <div
-        id="courseGrid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
-
-    </section>
-
-
-    <!-- =======================================================
-         PLAYER
-         ======================================================= -->
-
-    <section
-      id="viewPlayer"
-      class="hidden space-y-5"
-    >
-
-      <button
-        onclick="navigateTo('catalog')"
-        class="text-xs font-bold text-brand-600"
-      >
-        <i class="fa-solid fa-arrow-left mr-1.5"></i>
-        Kembali ke kelas
-      </button>
-
-
-      <div
-        class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-5"
-      >
-
-        <div class="space-y-5">
-
-          <div
-            class="bg-black rounded-3xl overflow-hidden aspect-video shadow-xl"
-          >
-
-            <iframe
-              id="youtubeIframe"
-              class="w-full h-full"
-              src=""
-              title="Video pembelajaran"
-              frameborder="0"
-              allow="autoplay; encrypted-media; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-
-          </div>
-
-
-          <div
-            class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border p-5 sm:p-6"
-          >
-
-            <div
-              id="currentLessonModule"
-              class="text-[10px] font-extrabold uppercase tracking-wider text-brand-600"
-            ></div>
-
-            <h2
-              id="currentLessonTitle"
-              class="text-xl sm:text-2xl font-black mt-1"
-            ></h2>
-
-
-            <div
-              class="mt-5 pt-5 border-t border-slate-100 dark:border-dark-border"
-            >
-
-              <h3 class="text-xs font-black uppercase tracking-wider">
-                Catatan Materi
-              </h3>
-
-              <p
-                id="currentLessonNotes"
-                class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-7 whitespace-pre-wrap"
-              ></p>
-
-            </div>
-
-
-            <div
-              class="mt-5 pt-5 border-t border-slate-100 dark:border-dark-border"
-            >
-
-              <h3 class="text-xs font-black uppercase tracking-wider mb-3">
-                Resources
-              </h3>
-
-              <div
-                id="currentLessonResources"
-                class="grid sm:grid-cols-2 gap-2"
-              ></div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <aside
-          class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border overflow-hidden lg:sticky lg:top-20 h-fit"
-        >
-
-          <div
-            class="p-5 bg-slate-50 dark:bg-dark-border/40 border-b border-slate-100 dark:border-dark-border"
-          >
-
-            <div
-              class="flex justify-between text-xs font-bold mb-2"
-            >
-              <span>Progress Kelas</span>
-
-              <span
-                id="playerProgressPct"
-                class="text-brand-600"
-              >
-                0%
-              </span>
-
-            </div>
-
-            <div
-              class="h-2 bg-slate-200 dark:bg-dark-border rounded-full overflow-hidden"
-            >
-              <div
-                id="playerProgressBar"
-                class="h-full bg-brand-600 rounded-full"
-                style="width:0%"
-              ></div>
-            </div>
-
-          </div>
-
-
-          <div
-            id="adminAddLessonBox"
-            class="hidden p-3 border-b border-slate-100 dark:border-dark-border"
-          >
-
-            <button
-              onclick="openLessonModal()"
-              class="w-full py-2.5 bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-sky-400 text-xs font-bold rounded-xl"
-            >
-              <i class="fa-solid fa-plus mr-1.5"></i>
-              Tambah Materi
-            </button>
-
-          </div>
-
-
-          <div
-            id="moduleAccordionList"
-            class="p-3 divide-y divide-slate-100 dark:divide-dark-border max-h-[600px] overflow-y-auto custom-scrollbar"
-          ></div>
-
-        </aside>
-
-      </div>
-
-    </section>
-
-
-    <!-- =======================================================
-         TEMPLATES
-         ======================================================= -->
-
-    <section
-      id="viewTemplates"
-      class="hidden space-y-6"
-    >
-
-      <div
-        class="flex flex-col sm:flex-row justify-between gap-4"
-      >
-
-        <div>
-
-          <h2 class="text-xl sm:text-2xl font-black">
-            Koleksi Template WebApp & Spreadsheet
-          </h2>
-
-          <p class="text-xs text-slate-500 mt-1">
-            Template dan prompt siap digunakan.
-          </p>
-
-        </div>
-
-
-        <button
-          id="addTemplateBtn"
-          onclick="openTemplateModal()"
-          class="hidden px-4 py-2.5 bg-indigo-600 text-white text-xs font-bold rounded-xl"
-        >
-          <i class="fa-solid fa-plus mr-1.5"></i>
-          Tambah Template
-        </button>
-
-      </div>
-
-
-      <div
-        id="templatesGrid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
-
-    </section>
-
-
-    <!-- =======================================================
-         TOOLS
-         ======================================================= -->
-
-    <section
-      id="viewTools"
-      class="hidden space-y-6"
-    >
-
-      <div
-        class="flex flex-col sm:flex-row justify-between gap-4"
-      >
-
-        <div>
-
-          <h2 class="text-xl sm:text-2xl font-black">
-            Koleksi Tools & AI Toolkit
-          </h2>
-
-          <p class="text-xs text-slate-500 mt-1">
-            Tools pilihan Setyadigital.
-          </p>
-
-        </div>
-
-
-        <button
-          id="addToolBtn"
-          onclick="openToolModal()"
-          class="hidden px-4 py-2.5 bg-emerald-600 text-white text-xs font-bold rounded-xl"
-        >
-          <i class="fa-solid fa-plus mr-1.5"></i>
-          Tambah Tool
-        </button>
-
-      </div>
-
-
-      <div
-        id="toolsGrid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
-
-    </section>
-
-
-    <!-- =======================================================
-         PRODUCTS
-         ======================================================= -->
-
-    <section
-      id="viewProducts"
-      class="hidden space-y-6"
-    >
-
-      <div
-        class="flex flex-col sm:flex-row justify-between gap-4"
-      >
-
-        <div>
-
-          <h2 class="text-xl sm:text-2xl font-black">
-            Produk Digital
-          </h2>
-
-          <p class="text-xs text-slate-500 mt-1">
-            Produk digital pilihan Setyadigital.
-          </p>
-
-        </div>
-
-
-        <button
-          id="addProductBtn"
-          onclick="openProductModal()"
-          class="hidden px-4 py-2.5 bg-amber-500 text-white text-xs font-bold rounded-xl"
-        >
-          <i class="fa-solid fa-plus mr-1.5"></i>
-          Tambah Produk
-        </button>
-
-      </div>
-
-
-      <div
-        id="productsGrid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      ></div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =========================================================
-       GENERIC MODAL
-       ========================================================= -->
-
-  <div
-    id="modal"
-    class="fixed inset-0 z-[9000] bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4"
-  >
-
-    <div
-      class="bg-white dark:bg-dark-card rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
-    >
-
-      <div
-        class="p-5 border-b border-slate-100 dark:border-dark-border flex justify-between items-center"
-      >
-
-        <h3
-          id="modalTitle"
-          class="font-black text-lg"
-        ></h3>
-
-        <button
-          onclick="closeModal()"
-          class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-dark-border"
-        >
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-      </div>
-
-
-      <form
-        id="modalForm"
-        class="p-5 space-y-4"
-      ></form>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================================================
-       JAVASCRIPT
-       ========================================================= -->
-
-  <script>
-
-    /* ============================================================
-       SETYADIGITAL LMS — SUPABASE SINGLE HTML VERSION
-       ============================================================ */
-
-    const SUPABASE_URL =
-      'https://nrtrhupymmkbdirdrffu.supabase.co';
-
-    const SUPABASE_ANON_KEY =
-      'sb_publishable_nI1jmo11S13XOEgbvxOt0w_2UwCzvQH';
-
-    const sb = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
+      `
     );
 
+  });
 
-    let session = null;
-    let profile = null;
-    let currentRole = null;
-
-    let courses = [];
-    let templates = [];
-    let tools = [];
-    let products = [];
-
-    let activeCourseId = null;
-    let activeLessonId = null;
+}
 
 
-    const WA_GROUP_URL =
-      'https://chat.whatsapp.com/FVg6eKukPJS1cCZQk4wsBj?s=cl&p=a&ilr=1&amv=0';
+function loadLesson(id) {
 
+  activeLessonId = id;
 
-    /* ============================================================
-       INITIALIZATION
-       ============================================================ */
+  const c =
+    courses.find(
+      x =>
+        x.id ===
+        activeCourseId
+    );
 
-    document.addEventListener('DOMContentLoaded', async () => {
+  const l =
+    c?.lessons.find(
+      x =>
+        x.id === id
+    );
 
-      initTheme();
-      bindWa();
+  if (!l)
+    return;
 
-      if (SUPABASE_URL.includes('PASTE_')) {
+  document
+    .getElementById(
+      'youtubeIframe'
+    )
+    .src =
+      youtubeEmbed(
+        l.youtube_url
+      );
 
-        showLogin();
+  document
+    .getElementById(
+      'currentLessonModule'
+    )
+    .textContent =
+      l.module ||
+      'Materi';
 
-        toast(
-          'Isi SUPABASE_URL dan SUPABASE_ANON_KEY dulu.',
-          'error'
-        );
+  document
+    .getElementById(
+      'currentLessonTitle'
+    )
+    .textContent =
+      l.title;
 
-        return;
-      }
+  document
+    .getElementById(
+      'currentLessonNotes'
+    )
+    .textContent =
+      l.notes ||
+      'Tidak ada catatan tambahan.';
 
+  renderLessonResources(
+    l.resources || []
+  );
 
-      const {
-        data: { session: s }
-      } = await sb.auth.getSession();
+  document
+    .querySelectorAll(
+      '[id^="lessonBtn-"]'
+    )
+    .forEach(b => {
 
-
-      await applySession(s);
-
-
-      sb.auth.onAuthStateChange(
-        async (_event, s2) => {
-
-          setTimeout(
-            () => applySession(s2),
-            0
-          );
-
-        }
+      b.classList.remove(
+        'bg-brand-50',
+        'text-brand-600',
+        'dark:bg-brand-900/40'
       );
 
     });
 
+  document
+    .getElementById(
+      'lessonBtn-' + id
+    )
+    ?.classList.add(
+      'bg-brand-50',
+      'text-brand-600',
+      'dark:bg-brand-900/40'
+    );
 
-    /* ============================================================
-       SESSION
-       ============================================================ */
+}
 
-    async function applySession(s) {
 
-      session = s;
+/* ============================================================
+   RESOURCE SISWA
+   ============================================================ */
 
+function renderLessonResources(resources) {
 
-      if (!s) {
+  const r =
+    document.getElementById(
+      'currentLessonResources'
+    );
 
-        showLogin();
+  if (!resources.length) {
 
-        return;
-      }
+    r.innerHTML =
+      `
+      <span class="text-xs text-slate-400 italic">
+        Tidak ada resource.
+      </span>
+      `;
 
+    return;
+  }
 
-      const {
-        data,
-        error
-      } = await sb
-        .from('profiles')
-        .select('id,role,display_name')
-        .eq('id', s.user.id)
-        .maybeSingle();
+  r.innerHTML =
+    resources
+      .map((x, i) => {
 
+        const title =
+          x.title ||
+          `Resource ${i + 1}`;
 
-      if (error || !data) {
+        const url =
+          x.url ||
+          '';
 
-        await sb.auth.signOut();
+        return `
 
-        showLogin();
+          <div class="border border-slate-200 dark:border-dark-border rounded-2xl p-3 bg-slate-50 dark:bg-dark-border/30">
 
-        toast(
-          'Profil user belum terdaftar di profiles.',
-          'error'
-        );
+            <div class="flex items-center gap-3 min-w-0">
 
-        return;
-      }
+              <div class="w-9 h-9 shrink-0 rounded-xl bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-sky-400 flex items-center justify-center">
 
+                <i class="fa-solid fa-link text-xs"></i>
 
-      profile = data;
-      currentRole = data.role;
-
-
-      document
-        .getElementById('viewLogin')
-        .classList.add('hidden');
-
-
-      document
-        .getElementById('appHeader')
-        .classList.remove('hidden');
-
-
-      document
-        .getElementById('roleBadge')
-        .textContent =
-        currentRole === 'admin'
-          ? 'Admin Instruktur'
-          : 'Siswa Access';
-
-
-      document
-        .getElementById('addCourseBtn')
-        .classList.toggle(
-          'hidden',
-          currentRole !== 'admin'
-        );
-
-
-      document
-        .getElementById('addTemplateBtn')
-        .classList.toggle(
-          'hidden',
-          currentRole !== 'admin'
-        );
-
-
-      document
-        .getElementById('addToolBtn')
-        .classList.toggle(
-          'hidden',
-          currentRole !== 'admin'
-        );
-
-
-      document
-        .getElementById('addProductBtn')
-        .classList.toggle(
-          'hidden',
-          currentRole !== 'admin'
-        );
-
-
-      document
-        .getElementById('adminAddLessonBox')
-        .classList.toggle(
-          'hidden',
-          currentRole !== 'admin'
-        );
-
-
-      await loadAllData();
-
-      navigateTo('catalog');
-
-    }
-
-
-    /* ============================================================
-       LOGIN
-       ============================================================ */
-
-    async function login(e) {
-
-      e.preventDefault();
-
-
-      const email =
-        document
-          .getElementById('loginEmail')
-          .value
-          .trim();
-
-
-      const password =
-        document
-          .getElementById('loginPassword')
-          .value;
-
-
-      loading(
-        true,
-        'Memverifikasi akun...'
-      );
-
-
-      const {
-        data,
-        error
-      } = await sb.auth.signInWithPassword({
-        email,
-        password
-      });
-
-
-      loading(false);
-
-
-      if (error) {
-
-        toast(
-          error.message || 'Login gagal.',
-          'error'
-        );
-
-        return;
-      }
-
-
-      const {
-        data: prof,
-        error: profError
-      } = await sb
-        .from('profiles')
-        .select('role')
-        .eq('id', data.user.id)
-        .maybeSingle();
-
-
-      if (
-        profError ||
-        !prof ||
-        prof.role !==
-          document.getElementById('loginRole').value
-      ) {
-
-        await sb.auth.signOut();
-
-        toast(
-          'Role login tidak sesuai dengan akun ini.',
-          'error'
-        );
-
-        return;
-      }
-
-
-      await applySession(data.session);
-
-      document
-        .getElementById('loginPassword')
-        .value = '';
-
-    }
-
-
-    async function logout() {
-
-      await sb.auth.signOut();
-
-      session = null;
-      profile = null;
-      currentRole = null;
-
-      showLogin();
-
-      toast(
-        'Anda telah keluar.',
-        'info'
-      );
-
-    }
-
-
-    function setLoginRole(role) {
-
-      document
-        .getElementById('loginRole')
-        .value = role;
-
-
-      document
-        .getElementById('tabStudent')
-        .className =
-        role === 'student'
-          ? 'py-2.5 rounded-lg text-xs font-bold bg-white dark:bg-dark-card text-brand-600 shadow-sm'
-          : 'py-2.5 rounded-lg text-xs font-bold text-slate-500';
-
-
-      document
-        .getElementById('tabAdmin')
-        .className =
-        role === 'admin'
-          ? 'py-2.5 rounded-lg text-xs font-bold bg-white dark:bg-dark-card text-brand-600 shadow-sm'
-          : 'py-2.5 rounded-lg text-xs font-bold text-slate-500';
-
-
-      document
-        .getElementById('loginHint')
-        .textContent =
-        role === 'admin'
-          ? 'Gunakan akun admin.'
-          : 'Gunakan akun siswa yang diberikan.';
-
-    }
-
-
-    function togglePassword() {
-
-      const input =
-        document.getElementById('loginPassword');
-
-      const icon =
-        document.getElementById('eyeIcon');
-
-
-      input.type =
-        input.type === 'password'
-          ? 'text'
-          : 'password';
-
-
-      icon.className =
-        input.type === 'password'
-          ? 'fa-solid fa-eye'
-          : 'fa-solid fa-eye-slash';
-
-    }
-
-
-    /* ============================================================
-       LOAD DATA
-       ============================================================ */
-
-    async function loadAllData() {
-
-      loading(
-        true,
-        'Mengambil data dari Supabase...'
-      );
-
-
-      const [
-        c,
-        m,
-        l,
-        r,
-        t,
-        tl,
-        p
-      ] = await Promise.all([
-
-        sb
-          .from('courses')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          ),
-
-        sb
-          .from('modules')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          ),
-
-        sb
-          .from('lessons')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          ),
-
-        sb
-          .from('lesson_resources')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          ),
-
-        sb
-          .from('templates')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          ),
-
-        sb
-          .from('tools')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          ),
-
-        sb
-          .from('products')
-          .select('*')
-          .order(
-            'sort_order',
-            { ascending: true }
-          )
-
-      ]);
-
-
-      loading(false);
-
-
-      for (
-        const x of [
-          c,
-          m,
-          l,
-          r,
-          t,
-          tl,
-          p
-        ]
-      ) {
-
-        if (x.error) {
-          console.error(x.error);
-        }
-
-      }
-
-
-      courses =
-        (c.data || []).map(course => {
-
-          const mods =
-            (m.data || [])
-              .filter(
-                x =>
-                  x.course_id ===
-                  course.id
-              )
-              .sort(byOrder);
-
-
-          const lessons =
-            mods.flatMap(mod =>
-
-              (l.data || [])
-                .filter(
-                  x =>
-                    x.module_id ===
-                    mod.id
-                )
-                .sort(byOrder)
-                .map(ls => ({
-
-                  ...ls,
-
-                  module: mod.title,
-
-                  module_id: mod.id,
-
-                  resources:
-                    (r.data || [])
-                      .filter(
-                        z =>
-                          z.lesson_id ===
-                          ls.id
-                      )
-                      .sort(byOrder)
-
-                }))
-
-            );
-
-
-          return {
-
-            ...course,
-
-            modules: mods,
-
-            lessons
-
-          };
-
-        });
-
-
-      templates = t.data || [];
-      tools = tl.data || [];
-      products = p.data || [];
-
-
-      renderCatalog();
-      renderTemplates();
-      renderTools();
-      renderProducts();
-
-    }
-
-
-    function byOrder(a, b) {
-
-      return (
-        (a.sort_order || 0) -
-        (b.sort_order || 0)
-      );
-
-    }
-
-
-    /* ============================================================
-       NAVIGATION
-       ============================================================ */
-
-    function navigateTo(view) {
-
-      if (!session) {
-
-        showLogin();
-
-        return;
-      }
-
-
-      [
-        'viewCatalog',
-        'viewPlayer',
-        'viewTemplates',
-        'viewTools',
-        'viewProducts'
-      ].forEach(id => {
-
-        document
-          .getElementById(id)
-          .classList.add('hidden');
-
-      });
-
-
-      document
-        .querySelectorAll('.mobile-nav-item')
-        .forEach(b => {
-
-          b.classList.remove('active');
-
-        });
-
-
-      const activeNav =
-        document.querySelector(
-          `.mobile-nav-item[onclick="navigateTo('${view}')"]`
-        );
-
-
-      if (activeNav) {
-        activeNav.classList.add('active');
-      }
-
-
-      const map = {
-
-        catalog: 'viewCatalog',
-
-        player: 'viewPlayer',
-
-        templates: 'viewTemplates',
-
-        tools: 'viewTools',
-
-        products: 'viewProducts'
-
-      };
-
-
-      const target =
-        document.getElementById(map[view]);
-
-
-      if (target) {
-        target.classList.remove('hidden');
-      }
-
-
-      if (view === 'catalog') {
-        renderCatalog();
-      }
-
-      if (view === 'templates') {
-        renderTemplates();
-      }
-
-      if (view === 'tools') {
-        renderTools();
-      }
-
-      if (view === 'products') {
-        renderProducts();
-      }
-
-
-      /*
-        Jangan pakai smooth scroll di sini.
-        Pada beberapa browser mobile, smooth scroll
-        bisa membuat posisi akhir terlihat seperti
-        tertahan di belakang fixed navigation.
-      */
-      window.scrollTo({
-        top: 0,
-        behavior: 'auto'
-      });
-
-    }
-
-
-    function showLogin() {
-
-      document
-        .getElementById('appHeader')
-        .classList.add('hidden');
-
-
-      [
-        'viewCatalog',
-        'viewPlayer',
-        'viewTemplates',
-        'viewTools',
-        'viewProducts'
-      ].forEach(id => {
-
-        document
-          .getElementById(id)
-          .classList.add('hidden');
-
-      });
-
-
-      document
-        .getElementById('viewLogin')
-        .classList.remove('hidden');
-
-    }
-
-
-    /* ============================================================
-       URL / YOUTUBE
-       ============================================================ */
-
-    function openUrl(url) {
-
-      if (
-        url &&
-        url !== '#'
-      ) {
-
-        window.open(
-          url,
-          '_blank',
-          'noopener'
-        );
-
-      }
-
-    }
-
-
-    function esc(s) {
-
-      return String(s ?? '')
-        .replace(
-          /[&<>"']/g,
-          m => ({
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-          }[m])
-        );
-
-    }
-
-
-    function youtubeId(url) {
-
-      if (!url) {
-        return '';
-      }
-
-
-      try {
-
-        if (
-          url.includes(
-            'youtu.be/'
-          )
-        ) {
-
-          return url
-            .split('youtu.be/')[1]
-            .split(/[?&]/)[0];
-
-        }
-
-
-        const u = new URL(url);
-
-
-        if (
-          u.hostname.includes(
-            'youtube.com'
-          )
-        ) {
-
-          return (
-            u.searchParams.get('v') ||
-            u.pathname
-              .split('/')
-              .filter(Boolean)
-              .pop()
-          );
-
-        }
-
-      } catch (e) {}
-
-
-      return url.trim();
-
-    }
-
-
-    function youtubeEmbed(url) {
-
-      const id =
-        youtubeId(url);
-
-
-      if (!id) {
-        return '';
-      }
-
-
-      /*
-        origin membantu YouTube mengenali
-        domain tempat iframe dijalankan.
-      */
-
-      const origin =
-        encodeURIComponent(
-          window.location.origin
-        );
-
-
-      return (
-        `https://www.youtube.com/embed/` +
-        `${encodeURIComponent(id)}` +
-        `?rel=0&origin=${origin}`
-      );
-
-    }
-
-
-    /* ============================================================
-       CATALOG
-       ============================================================ */
-
-    function renderCatalog() {
-
-      const g =
-        document.getElementById(
-          'courseGrid'
-        );
-
-
-      g.innerHTML = '';
-
-
-      const list =
-        courses.filter(
-          c =>
-            c.status === 'published' ||
-            currentRole === 'admin'
-        );
-
-
-      if (!list.length) {
-
-        g.innerHTML =
-          `
-          <div class="col-span-full py-14 text-center text-sm text-slate-400">
-            Belum ada kelas yang dipublikasikan.
-          </div>
-          `;
-
-        return;
-      }
-
-
-      list.forEach(c => {
-
-        const lessons =
-          c.lessons?.length || 0;
-
-
-        g.insertAdjacentHTML(
-          'beforeend',
-          `
-
-          <div
-            class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col"
-          >
-
-            <div
-              class="relative h-48 bg-slate-200 dark:bg-dark-border"
-            >
-
-              ${
-                c.cover_url
-
-                  ? `
-                    <img
-                      src="${esc(c.cover_url)}"
-                      class="w-full h-full object-cover"
-                      alt="${esc(c.title)}"
-                    >
-                  `
-
-                  : `
-                    <div
-                      class="w-full h-full flex items-center justify-center text-slate-400"
-                    >
-                      <i class="fa-solid fa-graduation-cap text-5xl"></i>
-                    </div>
-                  `
-              }
-
-
-              <span
-                class="absolute top-3 left-3 bg-slate-900/80 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-full"
-              >
-                ${esc(c.category)}
-              </span>
-
-
-              ${
-                currentRole === 'admin'
-
-                  ? `
-                    <span
-                      class="absolute top-3 right-3 bg-white/90 text-slate-800 text-[9px] font-black px-2 py-1 rounded-full"
-                    >
-                      ${esc(c.status)}
-                    </span>
-                  `
-
-                  : ''
-              }
-
-            </div>
-
-
-            <div
-              class="p-6 flex-1 flex flex-col"
-            >
-
-              <h3
-                class="text-base font-black"
-              >
-                ${esc(c.title)}
-              </h3>
-
-
-              <p
-                class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3 leading-relaxed"
-              >
-                ${esc(c.description || '')}
-              </p>
-
-
-              <div
-                class="mt-4 text-[10px] text-slate-400"
-              >
-                ${lessons} materi video
               </div>
 
+              <div class="min-w-0 flex-1">
+
+                <div class="text-xs font-bold truncate">
+                  ${esc(title)}
+                </div>
+
+                <div class="text-[10px] text-slate-400 truncate mt-0.5">
+                  ${esc(url)}
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 mt-3">
 
               <button
-                onclick="openCourse('${c.id}')"
-                class="mt-5 w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs rounded-xl"
-              >
-                <i class="fa-solid fa-play mr-1.5"></i>
-                Buka Materi
+                type="button"
+                onclick="copyResourceLink(${JSON.stringify(url)})"
+                class="min-h-[42px] rounded-xl bg-white dark:bg-dark-card border border-slate-200 dark:border-dark-border text-xs font-bold text-slate-600 dark:text-slate-200 hover:bg-slate-100">
+
+                <i class="fa-solid fa-copy mr-1.5"></i>
+                Salin
+
               </button>
 
+              <button
+                type="button"
+                onclick="openResourceLink(${JSON.stringify(url)})"
+                class="min-h-[42px] rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold">
 
-              ${
-                currentRole === 'admin'
+                <i class="fa-solid fa-arrow-up-right-from-square mr-1.5"></i>
+                Buka
 
-                  ? `
-                    <div
-                      class="grid grid-cols-2 gap-2 mt-2"
-                    >
-
-                      <button
-                        onclick="openCourseModal('${c.id}')"
-                        class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold"
-                      >
-                        <i class="fa-solid fa-pen mr-1"></i>
-                        Edit
-                      </button>
-
-
-                      <button
-                        onclick="deleteCourse('${c.id}')"
-                        class="py-2 bg-rose-50 text-rose-600 dark:bg-rose-950/30 rounded-xl text-xs font-bold"
-                      >
-                        <i class="fa-solid fa-trash mr-1"></i>
-                        Hapus
-                      </button>
-
-                    </div>
-                  `
-
-                  : ''
-              }
+              </button>
 
             </div>
 
           </div>
-
-          `
-        );
-
-      });
-
-    }
-
-
-    /* ============================================================
-       OPEN COURSE
-       ============================================================ */
-
-    function openCourse(id) {
-
-      activeCourseId = id;
-
-
-      const c =
-        courses.find(
-          x => x.id === id
-        );
-
-
-      if (!c) {
-        return;
-      }
-
-
-      navigateTo('player');
-
-
-      renderModules(c);
-
-
-      if (c.lessons?.length) {
-
-        loadLesson(
-          c.lessons[0].id
-        );
-
-      } else {
-
-        clearLesson();
-
-      }
-
-    }
-
-
-    /* ============================================================
-       MODULES
-       ============================================================ */
-
-    function renderModules(c) {
-
-      const box =
-        document.getElementById(
-          'moduleAccordionList'
-        );
-
-
-      box.innerHTML = '';
-
-
-      if (!c.lessons?.length) {
-
-        box.innerHTML =
-          `
-          <div class="p-4 text-xs text-center text-slate-400">
-            Belum ada materi.
-          </div>
-          `;
-
-        return;
-      }
-
-
-      c.modules.forEach(mod => {
-
-        const ls =
-          c.lessons.filter(
-            x =>
-              x.module_id ===
-              mod.id
-          );
-
-
-        box.insertAdjacentHTML(
-          'beforeend',
-          `
-
-          <div class="py-3">
-
-            <div
-              class="px-3 text-[10px] font-extrabold uppercase tracking-wider text-slate-400"
-            >
-              ${esc(mod.title)}
-            </div>
-
-
-            <div class="mt-1 space-y-1">
-
-              ${
-                ls.map(x => `
-
-                  <div
-                    class="flex items-center gap-1"
-                  >
-
-                    <button
-                      onclick="loadLesson('${x.id}')"
-                      id="lessonBtn-${x.id}"
-                      class="flex-1 min-w-0 text-left px-3 py-2.5 rounded-xl flex justify-between text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-hover"
-                    >
-
-                      <span class="truncate">
-                        ${esc(x.title)}
-                      </span>
-
-                      <i
-                        class="fa-solid fa-play text-[9px] opacity-40 ml-2"
-                      ></i>
-
-                    </button>
-
-
-                    ${
-                      currentRole === 'admin'
-
-                        ? `
-
-                          <button
-                            onclick="openLessonModal('${x.id}')"
-                            class="w-8 h-8 shrink-0 rounded-lg bg-slate-100 dark:bg-dark-border text-slate-500"
-                            title="Edit"
-                          >
-                            <i class="fa-solid fa-pen text-[10px]"></i>
-                          </button>
-
-
-                          <button
-                            onclick="deleteLesson('${x.id}')"
-                            class="w-8 h-8 shrink-0 rounded-lg bg-rose-50 dark:bg-rose-950/30 text-rose-600"
-                            title="Hapus"
-                          >
-                            <i class="fa-solid fa-trash text-[10px]"></i>
-                          </button>
-
-                        `
-
-                        : ''
-                    }
-
-                  </div>
-
-                `).join('')
-              }
-
-            </div>
-
-          </div>
-
-          `
-        );
-
-      });
-
-    }
-
-
-    /* ============================================================
-       LOAD LESSON
-       ============================================================ */
-
-    function loadLesson(id) {
-
-      activeLessonId = id;
-
-
-      const c =
-        courses.find(
-          x =>
-            x.id ===
-            activeCourseId
-        );
-
-
-      const l =
-        c?.lessons.find(
-          x =>
-            x.id === id
-        );
-
-
-      if (!l) {
-        return;
-      }
-
-
-      document
-        .getElementById(
-          'youtubeIframe'
-        )
-        .src =
-        youtubeEmbed(
-          l.youtube_url
-        );
-
-
-      document
-        .getElementById(
-          'currentLessonModule'
-        )
-        .textContent =
-        l.module ||
-        'Materi';
-
-
-      document
-        .getElementById(
-          'currentLessonTitle'
-        )
-        .textContent =
-        l.title;
-
-
-      document
-        .getElementById(
-          'currentLessonNotes'
-        )
-        .textContent =
-        l.notes ||
-        'Tidak ada catatan tambahan.';
-
-
-      const r =
-        document.getElementById(
-          'currentLessonResources'
-        );
-
-
-      r.innerHTML =
-        (l.resources || []).length
-
-          ? l.resources
-              .map(
-                x =>
-                  `
-                  <a
-                    href="${esc(x.url)}"
-                    target="_blank"
-                    rel="noopener"
-                    class="p-3 bg-slate-50 dark:bg-dark-border/40 border border-slate-200 dark:border-dark-border rounded-2xl flex items-center justify-between text-xs font-bold"
-                  >
-
-                    <span class="truncate">
-                      ${esc(x.title)}
-                    </span>
-
-                    <i
-                      class="fa-solid fa-arrow-up-right-from-square ml-2"
-                    ></i>
-
-                  </a>
-                  `
-              )
-              .join('')
-
-          : `
-            <span
-              class="text-xs text-slate-400 italic"
-            >
-              Tidak ada resource.
-            </span>
-          `;
-
-
-      document
-        .querySelectorAll(
-          '[id^="lessonBtn-"]'
-        )
-        .forEach(b => {
-
-          b.classList.remove(
-            'bg-brand-50',
-            'text-brand-600',
-            'dark:bg-brand-900/40'
-          );
-
-        });
-
-
-      document
-        .getElementById(
-          'lessonBtn-' + id
-        )
-        ?.classList.add(
-          'bg-brand-50',
-          'text-brand-600',
-          'dark:bg-brand-900/40'
-        );
-
-    }
-
-
-    function clearLesson() {
-
-      document
-        .getElementById(
-          'youtubeIframe'
-        )
-        .src = '';
-
-
-      document
-        .getElementById(
-          'currentLessonModule'
-        )
-        .textContent = '';
-
-
-      document
-        .getElementById(
-          'currentLessonTitle'
-        )
-        .textContent =
-        'Belum Ada Materi';
-
-
-      document
-        .getElementById(
-          'currentLessonNotes'
-        )
-        .textContent =
-        'Admin belum menambahkan materi.';
-
-    }
-
-
-    /* ============================================================
-       TEMPLATES
-       ============================================================ */
-
-    function renderTemplates() {
-
-      const g =
-        document.getElementById(
-          'templatesGrid'
-        );
-
-
-      g.innerHTML = '';
-
-
-      const list =
-        templates.filter(
-          x =>
-            x.is_published ||
-            currentRole === 'admin'
-        );
-
-
-      if (!list.length) {
-
-        g.innerHTML =
-          `
-          <div class="col-span-full py-12 text-center text-sm text-slate-400">
-            Belum ada template.
-          </div>
-          `;
-
-        return;
-      }
-
-
-      list.forEach(t => {
-
-        g.insertAdjacentHTML(
-          'beforeend',
-          `
-
-          <div
-            class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border p-6 shadow-sm flex flex-col"
-          >
-
-            <div
-              class="flex justify-between gap-3"
-            >
-
-              <span
-                class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50"
-              >
-                ${esc(t.category)}
-              </span>
-
-              <i
-                class="fa-solid fa-cubes-stacked text-indigo-500"
-              ></i>
-
-            </div>
-
-
-            <h3 class="mt-4 text-base font-black">
-              ${esc(t.title)}
-            </h3>
-
-
-            <p
-              class="mt-2 text-xs text-slate-500 line-clamp-3"
-            >
-              ${esc(t.description || '')}
-            </p>
-
-
-            <div
-              class="mt-auto pt-5 space-y-2"
-            >
-
-              ${
-                t.sheet_url
-
-                  ? `
-                    <a
-                      href="${esc(t.sheet_url)}"
-                      target="_blank"
-                      rel="noopener"
-                      class="w-full py-2.5 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl flex justify-center"
-                    >
-                      Duplikat Spreadsheet
-                    </a>
-                  `
-
-                  : ''
-              }
-
-
-              ${
-                t.prompt_text
-
-                  ? `
-                    <button
-                      onclick="copyText(${JSON.stringify(t.prompt_text)})"
-                      class="w-full py-2.5 bg-slate-100 dark:bg-dark-border text-xs font-bold rounded-xl"
-                    >
-                      Salin Prompt AI
-                    </button>
-                  `
-
-                  : ''
-              }
-
-
-              ${
-                t.demo_url
-
-                  ? `
-                    <a
-                      href="${esc(t.demo_url)}"
-                      target="_blank"
-                      rel="noopener"
-                      class="w-full py-2.5 bg-brand-600 text-white text-xs font-bold rounded-xl flex justify-center"
-                    >
-                      Live Demo
-                    </a>
-                  `
-
-                  : ''
-              }
-
-
-              ${
-                currentRole === 'admin'
-
-                  ? `
-                    <div
-                      class="grid grid-cols-2 gap-2"
-                    >
-
-                      <button
-                        onclick="openTemplateModal('${t.id}')"
-                        class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        onclick="deleteRow('templates','${t.id}',renderTemplates)"
-                        class="py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold"
-                      >
-                        Hapus
-                      </button>
-
-                    </div>
-                  `
-
-                  : ''
-              }
-
-            </div>
-
-          </div>
-
-          `
-        );
-
-      });
-
-    }
-
-
-    /* ============================================================
-       TOOLS
-       ============================================================ */
-
-    function renderTools() {
-
-      const g =
-        document.getElementById(
-          'toolsGrid'
-        );
-
-
-      g.innerHTML = '';
-
-
-      const list =
-        tools.filter(
-          x =>
-            x.is_published ||
-            currentRole === 'admin'
-        );
-
-
-      if (!list.length) {
-
-        g.innerHTML =
-          `
-          <div class="col-span-full py-12 text-center text-sm text-slate-400">
-            Belum ada tools.
-          </div>
-          `;
-
-        return;
-      }
-
-
-      list.forEach(t => {
-
-        g.insertAdjacentHTML(
-          'beforeend',
-          `
-
-          <div
-            class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border p-6 shadow-sm flex flex-col"
-          >
-
-            <span
-              class="text-[10px] font-extrabold uppercase text-emerald-600"
-            >
-              ${esc(t.category)}
-            </span>
-
-
-            <h3
-              class="mt-2 text-base font-black"
-            >
-              ${esc(t.name)}
-            </h3>
-
-
-            <p
-              class="mt-2 text-xs text-slate-500 line-clamp-3"
-            >
-              ${esc(t.description || '')}
-            </p>
-
-
-            <a
-              href="${esc(t.url)}"
-              target="_blank"
-              rel="noopener"
-              class="mt-auto pt-5"
-            >
-
-              <span
-                class="w-full py-2.5 bg-slate-100 dark:bg-dark-border hover:bg-emerald-500 hover:text-white text-xs font-bold rounded-xl flex justify-center"
-              >
-                Buka Tool
-              </span>
-
-            </a>
-
-
-            ${
-              currentRole === 'admin'
-
-                ? `
-                  <div
-                    class="grid grid-cols-2 gap-2 mt-2"
-                  >
-
-                    <button
-                      onclick="openToolModal('${t.id}')"
-                      class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold"
-                    >
-                      Edit
-                    </button>
-
-                    <button
-                      onclick="deleteRow('tools','${t.id}',renderTools)"
-                      class="py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold"
-                    >
-                      Hapus
-                    </button>
-
-                  </div>
-                `
-
-                : ''
-            }
-
-          </div>
-
-          `
-        );
-
-      });
-
-    }
-
-
-    /* ============================================================
-       PRODUCTS
-       ============================================================ */
-
-    function renderProducts() {
-
-      const g =
-        document.getElementById(
-          'productsGrid'
-        );
-
-
-      g.innerHTML = '';
-
-
-      const list =
-        products.filter(
-          x =>
-            x.is_published ||
-            currentRole === 'admin'
-        );
-
-
-      if (!list.length) {
-
-        g.innerHTML =
-          `
-          <div class="col-span-full py-12 text-center text-sm text-slate-400">
-            Belum ada produk.
-          </div>
-          `;
-
-        return;
-      }
-
-
-      list.forEach(p => {
-
-        g.insertAdjacentHTML(
-          'beforeend',
-          `
-
-          <div
-            class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border overflow-hidden shadow-sm flex flex-col"
-          >
-
-            <div
-              class="h-48 bg-slate-200 dark:bg-dark-border relative"
-            >
-
-              ${
-                p.image_url
-
-                  ? `
-                    <img
-                      src="${esc(p.image_url)}"
-                      class="w-full h-full object-cover"
-                      alt="${esc(p.title)}"
-                    >
-                  `
-
-                  : `
-                    <div
-                      class="w-full h-full flex items-center justify-center text-slate-400"
-                    >
-                      <i class="fa-solid fa-bag-shopping text-5xl"></i>
-                    </div>
-                  `
-              }
-
-
-              ${
-                p.price != null
-
-                  ? `
-                    <span
-                      class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-black px-3 py-1 rounded-full"
-                    >
-                      Rp ${Number(p.price).toLocaleString('id-ID')}
-                    </span>
-                  `
-
-                  : ''
-              }
-
-            </div>
-
-
-            <div
-              class="p-6 flex-1 flex flex-col"
-            >
-
-              <h3
-                class="text-base font-black"
-              >
-                ${esc(p.title)}
-              </h3>
-
-
-              <p
-                class="mt-2 text-xs text-slate-500 line-clamp-3"
-              >
-                ${esc(p.description || '')}
-              </p>
-
-
-              <a
-                href="${esc(p.checkout_url)}"
-                target="_blank"
-                rel="noopener"
-                class="mt-auto pt-5"
-              >
-
-                <span
-                  class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs rounded-xl flex justify-center"
-                >
-                  Beli / Checkout
-                </span>
-
-              </a>
-
-
-              ${
-                currentRole === 'admin'
-
-                  ? `
-                    <div
-                      class="grid grid-cols-2 gap-2 mt-2"
-                    >
-
-                      <button
-                        onclick="openProductModal('${p.id}')"
-                        class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        onclick="deleteRow('products','${p.id}',renderProducts)"
-                        class="py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold"
-                      >
-                        Hapus
-                      </button>
-
-                    </div>
-                  `
-
-                  : ''
-              }
-
-            </div>
-
-          </div>
-
-          `
-        );
-
-      });
-
-    }
-
-
-    /* ============================================================
-       COURSE MODAL
-       ============================================================ */
-
-    function openCourseModal(id = '') {
-
-      if (currentRole !== 'admin') {
-        return;
-      }
-
-
-      const c =
-        courses.find(
-          x => x.id === id
-        ) || {};
-
-
-      openModal(
-        id
-          ? 'Edit Kelas'
-          : 'Tambah Kelas',
-
-        [
-
-          field(
-            'title',
-            'Judul Kelas',
-            c.title || ''
-          ),
-
-          field(
-            'category',
-            'Kategori',
-            c.category || ''
-          ),
-
-          field(
-            'description',
-            'Deskripsi',
-            c.description || '',
-            'textarea'
-          ),
-
-          field(
-            'cover_url',
-            'URL Cover',
-            c.cover_url || '',
-            'url'
-          ),
-
-          selectField(
-            'status',
-            'Status',
-            c.status || 'draft',
-            [
-              ['draft', 'Draft'],
-              ['published', 'Published'],
-              ['archived', 'Archived']
-            ]
-          ),
-
-          field(
-            'sort_order',
-            'Urutan',
-            c.sort_order ?? 0,
-            'number'
-          )
-
-        ],
-
-        async v => {
-
-          const payload = {
-
-            title: v.title,
-
-            category: v.category,
-
-            description: v.description,
-
-            cover_url: v.cover_url,
-
-            status: v.status,
-
-            sort_order:
-              Number(v.sort_order) || 0
-
-          };
-
-
-          await save(
-            'courses',
-            payload,
-            id
-          );
-
-
-          await loadAllData();
-
-          closeModal();
-
-
-          toast(
-            id
-              ? 'Kelas diperbarui.'
-              : 'Kelas ditambahkan.',
-            'success'
-          );
-
-        }
-
-      );
-
-    }
-
-
-    /* ============================================================
-       LESSON MODAL
-       ============================================================ */
-
-    function openLessonModal(id = '') {
-
-      if (
-        currentRole !== 'admin' ||
-        !activeCourseId
-      ) {
-        return;
-      }
-
-
-      const c =
-        courses.find(
-          x =>
-            x.id ===
-            activeCourseId
-        );
-
-
-      const l =
-        c?.lessons.find(
-          x => x.id === id
-        ) || {};
-
-
-      const mods =
-        c?.modules || [];
-
-
-      openModal(
-
-        id
-          ? 'Edit Materi'
-          : 'Tambah Materi',
-
-        [
-
-          selectField(
-            'module_id',
-            'Modul',
-            l.module_id ||
-              mods[0]?.id ||
-              '',
-            mods.map(
-              m => [
-                m.id,
-                m.title
-              ]
-            )
-          ),
-
-          field(
-            'new_module',
-            'Modul Baru (opsional)',
-            ''
-          ),
-
-          field(
-            'title',
-            'Judul Materi',
-            l.title || ''
-          ),
-
-          field(
-            'youtube_url',
-            'URL YouTube',
-            l.youtube_url || '',
-            'url'
-          ),
-
-          field(
-            'notes',
-            'Catatan',
-            l.notes || '',
-            'textarea'
-          ),
-
-          field(
-            'resources',
-            'Resources (JSON opsional)',
-            l.resources?.length
-              ? JSON.stringify(
-                  l.resources
-                )
-              : '',
-            'textarea'
-          ),
-
-          field(
-            'sort_order',
-            'Urutan',
-            l.sort_order ?? 0,
-            'number'
-          ),
-
-          checkboxField(
-            'is_published',
-            'Published',
-            l.is_published !== false
-          )
-
-        ],
-
-        async v => {
-
-          let moduleId =
-            v.module_id;
-
-
-          if (
-            v.new_module.trim()
-          ) {
-
-            const {
-              data,
-              error
-            } = await sb
-              .from('modules')
-              .insert({
-
-                course_id:
-                  activeCourseId,
-
-                title:
-                  v.new_module.trim(),
-
-                sort_order:
-                  (c.modules?.length || 0) + 1
-
-              })
-              .select()
-              .single();
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            moduleId =
-              data.id;
-
-          }
-
-
-          let resources = [];
-
-
-          if (
-            v.resources.trim()
-          ) {
-
-            try {
-
-              resources =
-                JSON.parse(
-                  v.resources
-                );
-
-            } catch (e) {
-
-              throw new Error(
-                'Format Resources harus JSON valid.'
-              );
-
-            }
-
-          }
-
-
-          const payload = {
-
-            module_id:
-              moduleId,
-
-            title:
-              v.title,
-
-            youtube_url:
-              v.youtube_url,
-
-            notes:
-              v.notes,
-
-            sort_order:
-              Number(v.sort_order) || 0,
-
-            is_published:
-              v.is_published
-
-          };
-
-
-          if (id) {
-
-            await save(
-              'lessons',
-              payload,
-              id
-            );
-
-          } else {
-
-            const {
-              data,
-              error
-            } = await sb
-              .from('lessons')
-              .insert(payload)
-              .select()
-              .single();
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            await replaceResources(
-              data.id,
-              resources
-            );
-
-          }
-
-
-          if (id) {
-
-            await replaceResources(
-              id,
-              resources
-            );
-
-          }
-
-
-          await loadAllData();
-
-          closeModal();
-
-
-          toast(
-            id
-              ? 'Materi diperbarui.'
-              : 'Materi ditambahkan.',
-            'success'
-          );
-
-
-          renderModules(
-            courses.find(
-              x =>
-                x.id ===
-                activeCourseId
-            )
-          );
-
-        }
-
-      );
-
-    }
-
-
-    /* ============================================================
-       RESOURCES
-       ============================================================ */
-
-    async function replaceResources(
-      lessonId,
-      resources
-    ) {
-
-      await sb
-        .from('lesson_resources')
-        .delete()
-        .eq(
-          'lesson_id',
-          lessonId
-        );
-
-
-      const rows =
-        (resources || [])
-          .filter(
-            x =>
-              x?.title &&
-              x?.url
-          )
-          .map(
-            (x, i) => ({
-
-              lesson_id:
-                lessonId,
-
-              title:
-                String(x.title),
-
-              url:
-                String(x.url),
-
-              resource_type:
-                x.resource_type ||
-                'link',
-
-              sort_order:
-                i
-
-            })
-          );
-
-
-      if (rows.length) {
-
-        const {
-          error
-        } = await sb
-          .from('lesson_resources')
-          .insert(rows);
-
-
-        if (error) {
-          throw error;
-        }
-
-      }
-
-    }
-
-
-    /* ============================================================
-       TEMPLATE MODAL
-       ============================================================ */
-
-    function openTemplateModal(id = '') {
-
-      const x =
-        templates.find(
-          a => a.id === id
-        ) || {};
-
-
-      openModal(
-
-        id
-          ? 'Edit Template'
-          : 'Tambah Template',
-
-        [
-
-          field(
-            'title',
-            'Judul',
-            x.title || ''
-          ),
-
-          field(
-            'category',
-            'Kategori',
-            x.category || ''
-          ),
-
-          field(
-            'description',
-            'Deskripsi',
-            x.description || '',
-            'textarea'
-          ),
-
-          field(
-            'sheet_url',
-            'Spreadsheet URL',
-            x.sheet_url || '',
-            'url'
-          ),
-
-          field(
-            'prompt_text',
-            'Prompt AI',
-            x.prompt_text || '',
-            'textarea'
-          ),
-
-          field(
-            'demo_url',
-            'Demo URL',
-            x.demo_url || '',
-            'url'
-          ),
-
-          field(
-            'sort_order',
-            'Urutan',
-            x.sort_order ?? 0,
-            'number'
-          ),
-
-          checkboxField(
-            'is_published',
-            'Published',
-            x.is_published !== false
-          )
-
-        ],
-
-        async v => {
-
-          await save(
-            'templates',
-            {
-              ...v,
-              sort_order:
-                Number(v.sort_order) || 0
-            },
-            id
-          );
-
-
-          await loadAllData();
-
-          closeModal();
-
-          toast(
-            'Template tersimpan.',
-            'success'
-          );
-
-        }
-
-      );
-
-    }
-
-
-    /* ============================================================
-       TOOL MODAL
-       ============================================================ */
-
-    function openToolModal(id = '') {
-
-      const x =
-        tools.find(
-          a => a.id === id
-        ) || {};
-
-
-      openModal(
-
-        id
-          ? 'Edit Tool'
-          : 'Tambah Tool',
-
-        [
-
-          field(
-            'name',
-            'Nama Tool',
-            x.name || ''
-          ),
-
-          field(
-            'category',
-            'Kategori',
-            x.category || ''
-          ),
-
-          field(
-            'description',
-            'Deskripsi',
-            x.description || '',
-            'textarea'
-          ),
-
-          field(
-            'url',
-            'URL Tool',
-            x.url || '',
-            'url'
-          ),
-
-          field(
-            'sort_order',
-            'Urutan',
-            x.sort_order ?? 0,
-            'number'
-          ),
-
-          checkboxField(
-            'is_published',
-            'Published',
-            x.is_published !== false
-          )
-
-        ],
-
-        async v => {
-
-          await save(
-            'tools',
-            {
-              ...v,
-              sort_order:
-                Number(v.sort_order) || 0
-            },
-            id
-          );
-
-
-          await loadAllData();
-
-          closeModal();
-
-          toast(
-            'Tool tersimpan.',
-            'success'
-          );
-
-        }
-
-      );
-
-    }
-
-
-    /* ============================================================
-       PRODUCT MODAL
-       ============================================================ */
-
-    function openProductModal(id = '') {
-
-      const x =
-        products.find(
-          a => a.id === id
-        ) || {};
-
-
-      openModal(
-
-        id
-          ? 'Edit Produk'
-          : 'Tambah Produk',
-
-        [
-
-          field(
-            'title',
-            'Nama Produk',
-            x.title || ''
-          ),
-
-          field(
-            'price',
-            'Harga',
-            x.price ?? 0,
-            'number'
-          ),
-
-          field(
-            'description',
-            'Deskripsi',
-            x.description || '',
-            'textarea'
-          ),
-
-          field(
-            'image_url',
-            'URL Gambar',
-            x.image_url || '',
-            'url'
-          ),
-
-          field(
-            'checkout_url',
-            'Checkout URL',
-            x.checkout_url || '',
-            'url'
-          ),
-
-          field(
-            'sort_order',
-            'Urutan',
-            x.sort_order ?? 0,
-            'number'
-          ),
-
-          checkboxField(
-            'is_published',
-            'Published',
-            x.is_published !== false
-          )
-
-        ],
-
-        async v => {
-
-          await save(
-            'products',
-            {
-              ...v,
-              price:
-                Number(v.price) || 0,
-              sort_order:
-                Number(v.sort_order) || 0
-            },
-            id
-          );
-
-
-          await loadAllData();
-
-          closeModal();
-
-          toast(
-            'Produk tersimpan.',
-            'success'
-          );
-
-        }
-
-      );
-
-    }
-
-
-    /* ============================================================
-       SAVE
-       ============================================================ */
-
-    async function save(
-      table,
-      payload,
-      id = ''
-    ) {
-
-      if (
-        currentRole !== 'admin'
-      ) {
-
-        throw new Error(
-          'Akses admin diperlukan.'
-        );
-
-      }
-
-
-      const q =
-        id
-          ? sb
-              .from(table)
-              .update(payload)
-              .eq('id', id)
-
-          : sb
-              .from(table)
-              .insert(payload);
-
-
-      const {
-        error
-      } = await q;
-
-
-      if (error) {
-        throw error;
-      }
-
-    }
-
-
-    /* ============================================================
-       DELETE LESSON
-       ============================================================ */
-
-    async function deleteLesson(id) {
-
-      if (
-        currentRole !== 'admin'
-      ) {
-        return;
-      }
-
-
-      if (
-        !confirm(
-          'Hapus materi ini? Resource terkait juga akan dihapus.'
-        )
-      ) {
-        return;
-      }
-
-
-      const {
-        error
-      } = await sb
-        .from('lessons')
-        .delete()
-        .eq('id', id);
-
-
-      if (error) {
-
-        toast(
-          error.message,
-          'error'
-        );
-
-        return;
-      }
-
-
-      if (
-        activeLessonId === id
-      ) {
-
-        activeLessonId = null;
-
-        clearLesson();
-
-      }
-
-
-      await loadAllData();
-
-
-      const c =
-        courses.find(
-          x =>
-            x.id ===
-            activeCourseId
-        );
-
-
-      if (c) {
-        renderModules(c);
-      }
-
-
-      toast(
-        'Materi dihapus.',
-        'success'
-      );
-
-    }
-
-
-    /* ============================================================
-       DELETE COURSE
-       ============================================================ */
-
-    async function deleteCourse(id) {
-
-      if (
-        !confirm(
-          'Hapus kelas ini? Modul, materi, dan resource terkait akan ikut terhapus.'
-        )
-      ) {
-        return;
-      }
-
-
-      const {
-        error
-      } = await sb
-        .from('courses')
-        .delete()
-        .eq('id', id);
-
-
-      if (error) {
-
-        toast(
-          error.message,
-          'error'
-        );
-
-        return;
-      }
-
-
-      await loadAllData();
-
-
-      toast(
-        'Kelas dihapus.',
-        'success'
-      );
-
-    }
-
-
-    /* ============================================================
-       GENERIC DELETE
-       ============================================================ */
-
-    async function deleteRow(
-      table,
-      id,
-      rerender
-    ) {
-
-      if (
-        !confirm(
-          'Hapus data ini?'
-        )
-      ) {
-        return;
-      }
-
-
-      const {
-        error
-      } = await sb
-        .from(table)
-        .delete()
-        .eq('id', id);
-
-
-      if (error) {
-
-        toast(
-          error.message,
-          'error'
-        );
-
-        return;
-      }
-
-
-      await loadAllData();
-
-      rerender();
-
-
-      toast(
-        'Data dihapus.',
-        'success'
-      );
-
-    }
-
-
-    /* ============================================================
-       MODAL
-       ============================================================ */
-
-    function openModal(
-      title,
-      fields,
-      onSubmit
-    ) {
-
-      document
-        .getElementById(
-          'modalTitle'
-        )
-        .textContent =
-        title;
-
-
-      const f =
-        document.getElementById(
-          'modalForm'
-        );
-
-
-      f.innerHTML =
-        fields.join('') +
-        `
-
-        <div
-          class="pt-4 border-t border-slate-100 dark:border-dark-border flex justify-end gap-2"
-        >
-
-          <button
-            type="button"
-            onclick="closeModal()"
-            class="px-4 py-2.5 text-xs font-bold text-slate-500"
-          >
-            Batal
-          </button>
-
-
-          <button
-            class="px-5 py-2.5 bg-brand-600 text-white rounded-xl text-xs font-bold"
-          >
-            Simpan
-          </button>
-
-        </div>
 
         `;
 
+      })
+      .join('');
 
-      f.onsubmit =
-        async e => {
-
-          e.preventDefault();
-
-
-          try {
-
-            loading(
-              true,
-              'Menyimpan...'
-            );
+}
 
 
-            const v =
-              Object.fromEntries(
-                new FormData(f).entries()
-              );
+function copyResourceLink(url) {
 
+  if (!url) {
 
-            v.is_published =
-              f.querySelector(
-                '[name=is_published]'
-              )?.checked ??
-              true;
+    toast(
+      'Link resource kosong.',
+      'error'
+    );
 
+    return;
+  }
 
-            await onSubmit(v);
+  if (!navigator.clipboard) {
 
+    toast(
+      'Browser tidak mendukung salin otomatis.',
+      'error'
+    );
 
-            loading(false);
+    return;
+  }
 
-          } catch (err) {
+  navigator.clipboard
+    .writeText(url)
+    .then(() => {
 
-            loading(false);
-
-            console.error(err);
-
-
-            toast(
-              err.message ||
-              'Gagal menyimpan.',
-              'error'
-            );
-
-          }
-
-        };
-
-
-      const m =
-        document.getElementById(
-          'modal'
-        );
-
-
-      m.classList.remove(
-        'hidden'
+      toast(
+        'Link berhasil disalin.',
+        'success'
       );
 
+    })
+    .catch(() => {
 
-      m.classList.add(
-        'flex'
+      toast(
+        'Gagal menyalin link.',
+        'error'
       );
 
-    }
+    });
+
+}
 
 
-    function closeModal() {
+function openResourceLink(url) {
 
-      const m =
-        document.getElementById(
-          'modal'
-        );
+  if (!url) {
+
+    toast(
+      'Link resource kosong.',
+      'error'
+    );
+
+    return;
+  }
+
+  window.open(
+    url,
+    '_blank',
+    'noopener,noreferrer'
+  );
+
+}
 
 
-      m.classList.add(
-        'hidden'
-      );
+function clearLesson() {
 
+  document
+    .getElementById(
+      'youtubeIframe'
+    )
+    .src = '';
 
-      m.classList.remove(
-        'flex'
-      );
+  document
+    .getElementById(
+      'currentLessonModule'
+    )
+    .textContent = '';
 
-    }
+  document
+    .getElementById(
+      'currentLessonTitle'
+    )
+    .textContent =
+      'Belum Ada Materi';
 
+  document
+    .getElementById(
+      'currentLessonNotes'
+    )
+    .textContent =
+      'Admin belum menambahkan materi.';
 
-    /* ============================================================
-       FORM HELPERS
-       ============================================================ */
-
-    function field(
-      name,
-      label,
-      value = '',
-      type = 'text'
-    ) {
-
-      return `
-
-        <div>
-
-          <label
-            class="block text-xs font-bold mb-1.5"
-          >
-            ${esc(label)}
-          </label>
-
-          ${
-            type === 'textarea'
-
-              ? `
-
-                <textarea
-                  name="${name}"
-                  rows="4"
-                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs outline-none"
-                >${esc(value)}</textarea>
-
-              `
-
-              : `
-
-                <input
-                  name="${name}"
-                  type="${type}"
-                  value="${esc(value)}"
-                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs outline-none"
-                >
-
-              `
-          }
-
-        </div>
-
+  document
+    .getElementById(
+      'currentLessonResources'
+    )
+    .innerHTML =
+      `
+      <span class="text-xs text-slate-400 italic">
+        Tidak ada resource.
+      </span>
       `;
 
-    }
+}
 
 
-    function selectField(
-      name,
-      label,
-      value,
-      options
-    ) {
+/* ============================================================
+   ADMIN - LESSON
+   ============================================================ */
 
-      return `
+function openLessonModal(id = '') {
 
-        <div>
+  if (
+    currentRole !== 'admin' ||
+    !activeCourseId
+  )
+    return;
 
-          <label
-            class="block text-xs font-bold mb-1.5"
-          >
-            ${esc(label)}
-          </label>
+  const c =
+    courses.find(
+      x =>
+        x.id ===
+        activeCourseId
+    );
 
+  const l =
+    c?.lessons.find(
+      x =>
+        x.id === id
+    ) || {};
 
-          <select
-            name="${name}"
-            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs"
-          >
+  const mods =
+    c?.modules || [];
 
-            ${
-              options
-                .map(
-                  o =>
-                    `
-                    <option
-                      value="${esc(o[0])}"
-                      ${
-                        o[0] === value
-                          ? 'selected'
-                          : ''
-                      }
-                    >
-                      ${esc(o[1])}
-                    </option>
-                    `
-                )
-                .join('')
-            }
+  /*
+    Resource lama otomatis ditampilkan
+    sebagai daftar URL.
 
-          </select>
+    Jadi admin tidak perlu input ulang
+    kalau hanya membuka/edit materi.
+  */
 
-        </div>
+  const existingResourceLinks =
+    (l.resources || [])
+      .map(x => x.url)
+      .filter(Boolean)
+      .join('\n');
 
-      `;
+  openModal(
 
-    }
+    id
+      ? 'Edit Materi'
+      : 'Tambah Materi',
 
+    [
 
-    function checkboxField(
-      name,
-      label,
-      checked
-    ) {
-
-      return `
-
-        <label
-          class="flex items-center gap-2 text-xs font-bold"
-        >
-
-          <input
-            name="${name}"
-            type="checkbox"
-            ${
-              checked
-                ? 'checked'
-                : ''
-            }
-            class="w-4 h-4"
-          >
-
-          ${esc(label)}
-
-        </label>
-
-      `;
-
-    }
-
-
-    /* ============================================================
-       UTILITIES
-       ============================================================ */
-
-    function bindWa() {
-
-      [
-        'waHeader',
-        'waHero'
-      ].forEach(id => {
-
-        const e =
-          document.getElementById(id);
-
-
-        e.href =
-          WA_GROUP_URL;
-
-
-        e.classList.remove(
-          'hidden'
-        );
-
-      });
-
-    }
-
-
-    function copyText(text) {
-
-      navigator.clipboard
-        .writeText(text)
-        .then(
-          () =>
-            toast(
-              'Prompt berhasil disalin.',
-              'success'
-            )
+      selectField(
+        'module_id',
+        'Modul',
+        l.module_id ||
+          mods[0]?.id ||
+          '',
+        mods.map(
+          m => [
+            m.id,
+            m.title
+          ]
         )
-        .catch(
-          () =>
-            toast(
-              'Gagal menyalin.',
-              'error'
-            )
-        );
+      ),
 
-    }
+      field(
+        'new_module',
+        'Modul Baru (opsional)',
+        ''
+      ),
 
+      field(
+        'title',
+        'Judul Materi',
+        l.title || ''
+      ),
 
-    function loading(
-      show,
-      text = 'Memuat...'
-    ) {
+      field(
+        'youtube_url',
+        'URL YouTube',
+        l.youtube_url || '',
+        'url'
+      ),
 
-      const x =
-        document.getElementById(
-          'loadingOverlay'
-        );
+      field(
+        'notes',
+        'Catatan',
+        l.notes || '',
+        'textarea'
+      ),
 
+      resourceLinksField(
+        'resources',
+        'Link Resource',
+        existingResourceLinks
+      ),
 
-      document
-        .getElementById(
-          'loadingText'
-        )
-        .textContent =
-        text;
+      field(
+        'sort_order',
+        'Urutan',
+        l.sort_order ?? 0,
+        'number'
+      ),
 
+      checkboxField(
+        'is_published',
+        'Published',
+        l.is_published !== false
+      )
 
-      x.classList.toggle(
-        'hidden',
-        !show
-      );
+    ],
 
+    async v => {
 
-      x.classList.toggle(
-        'flex',
-        show
-      );
+      let moduleId =
+        v.module_id;
 
-    }
-
-
-    function toast(
-      message,
-      type = 'info'
-    ) {
-
-      const c =
-        document.getElementById(
-          'toastContainer'
-        );
-
-
-      const x =
-        document.createElement(
-          'div'
-        );
-
-
-      const bg =
-        type === 'success'
-          ? 'bg-emerald-600'
-          : type === 'error'
-            ? 'bg-rose-600'
-            : 'bg-slate-900';
-
-
-      x.className =
-        `${bg} text-white px-4 py-3 rounded-2xl shadow-xl text-xs font-bold pointer-events-auto`;
-
-
-      x.textContent =
-        message;
-
-
-      c.appendChild(x);
-
-
-      setTimeout(
-        () => x.remove(),
-        3200
-      );
-
-    }
-
-
-    /* ============================================================
-       DARK MODE
-       ============================================================ */
-
-    function initTheme() {
+      /*
+        Kalau admin membuat modul baru,
+        hanya modul baru yang dibuat.
+      */
 
       if (
-
-        localStorage.getItem(
-          'setya_theme'
-        ) === 'dark'
-
-        ||
-
-        (
-          !localStorage.getItem(
-            'setya_theme'
-          )
-
-          &&
-
-          matchMedia(
-            '(prefers-color-scheme: dark)'
-          ).matches
-        )
-
+        v.new_module.trim()
       ) {
 
-        document.documentElement
-          .classList
-          .add('dark');
+        const {
+          data,
+          error
+        } =
+          await sb
+            .from('modules')
+            .insert({
+
+              course_id:
+                activeCourseId,
+
+              title:
+                v.new_module.trim(),
+
+              sort_order:
+                (c.modules?.length || 0) + 1
+
+            })
+            .select()
+            .single();
+
+        if (error)
+          throw error;
+
+        moduleId =
+          data.id;
+
+      }
+
+      /*
+        Link resource:
+        satu URL per baris.
+      */
+
+      const resources =
+        parseResourceLinks(
+          v.resources
+        );
+
+      const payload = {
+
+        module_id:
+          moduleId,
+
+        title:
+          v.title,
+
+        youtube_url:
+          v.youtube_url,
+
+        notes:
+          v.notes,
+
+        sort_order:
+          Number(v.sort_order) || 0,
+
+        is_published:
+          v.is_published
+
+      };
+
+      /*
+        UPDATE materi lama
+      */
+
+      if (id) {
+
+        await save(
+          'lessons',
+          payload,
+          id
+        );
+
+      }
+
+      /*
+        INSERT materi baru
+      */
+
+      else {
+
+        const {
+          data,
+          error
+        } =
+          await sb
+            .from('lessons')
+            .insert(payload)
+            .select()
+            .single();
+
+        if (error)
+          throw error;
+
+        await replaceResources(
+          data.id,
+          resources
+        );
+
+      }
+
+      /*
+        Untuk materi lama,
+        resource hanya diperbarui
+        milik materi tersebut.
+      */
+
+      if (id) {
+
+        await replaceResources(
+          id,
+          resources
+        );
+
+      }
+
+      await loadAllData();
+
+      closeModal();
+
+      toast(
+        id
+          ? 'Materi diperbarui.'
+          : 'Materi ditambahkan.',
+        'success'
+      );
+
+      const updatedCourse =
+        courses.find(
+          x =>
+            x.id ===
+            activeCourseId
+        );
+
+      if (updatedCourse) {
+
+        renderModules(
+          updatedCourse
+        );
 
       }
 
     }
 
+  );
 
-    function toggleDarkMode() {
-
-      document.documentElement
-        .classList
-        .toggle('dark');
+}
 
 
-      localStorage.setItem(
+/* ============================================================
+   FIELD RESOURCE
+   ============================================================ */
 
-        'setya_theme',
+function resourceLinksField(
+  name,
+  label,
+  value = ''
+) {
 
-        document.documentElement
-          .classList
-          .contains('dark')
-          ? 'dark'
-          : 'light'
+  return `
 
+    <div>
+
+      <label class="block text-xs font-bold mb-1.5">
+        ${esc(label)}
+      </label>
+
+      <textarea
+        name="${name}"
+        rows="6"
+        placeholder="Tempel link di sini, satu link per baris
+
+Contoh:
+https://gemini.google.com/
+https://docs.google.com/
+https://drive.google.com/"
+        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs outline-none focus:ring-2 focus:ring-brand-500">${esc(value)}</textarea>
+
+      <p class="text-[10px] text-slate-400 mt-1.5">
+        Satu link per baris. Siswa akan mendapatkan tombol
+        <b>Salin</b> dan <b>Buka</b>.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ============================================================
+   PARSE RESOURCE
+   ============================================================ */
+
+function parseResourceLinks(value) {
+
+  if (!value)
+    return [];
+
+  return String(value)
+    .split(/\r?\n/)
+    .map(
+      x =>
+        x.trim()
+    )
+    .filter(Boolean)
+    .map(
+      (url, i) => ({
+
+        title:
+          `Resource ${i + 1}`,
+
+        url,
+
+        resource_type:
+          'link',
+
+        sort_order:
+          i
+
+      })
+    );
+
+}
+
+
+/* ============================================================
+   REPLACE RESOURCE
+   ============================================================ */
+
+async function replaceResources(
+  lessonId,
+  resources
+) {
+
+  /*
+    Hanya resource milik lesson ini
+    yang diproses.
+  */
+
+  const {
+    error: deleteError
+  } =
+    await sb
+      .from('lesson_resources')
+      .delete()
+      .eq(
+        'lesson_id',
+        lessonId
+      );
+
+  if (deleteError)
+    throw deleteError;
+
+  const rows =
+    (resources || [])
+      .filter(
+        x =>
+          x?.url
+      )
+      .map(
+        (x, i) => ({
+
+          lesson_id:
+            lessonId,
+
+          title:
+            String(
+              x.title ||
+              `Resource ${i + 1}`
+            ),
+
+          url:
+            String(x.url),
+
+          resource_type:
+            x.resource_type ||
+            'link',
+
+          sort_order:
+            i
+
+        })
+      );
+
+  if (rows.length) {
+
+    const {
+      error
+    } =
+      await sb
+        .from('lesson_resources')
+        .insert(rows);
+
+    if (error)
+      throw error;
+
+  }
+
+}
+
+
+/* ============================================================
+   COURSE ADMIN
+   ============================================================ */
+
+function openCourseModal(id = '') {
+
+  if (
+    currentRole !== 'admin'
+  )
+    return;
+
+  const c =
+    courses.find(
+      x =>
+        x.id === id
+    ) || {};
+
+  openModal(
+
+    id
+      ? 'Edit Kelas'
+      : 'Tambah Kelas',
+
+    [
+
+      field(
+        'title',
+        'Judul Kelas',
+        c.title || ''
+      ),
+
+      field(
+        'category',
+        'Kategori',
+        c.category || ''
+      ),
+
+      field(
+        'description',
+        'Deskripsi',
+        c.description || '',
+        'textarea'
+      ),
+
+      field(
+        'cover_url',
+        'URL Cover',
+        c.cover_url || '',
+        'url'
+      ),
+
+      selectField(
+        'status',
+        'Status',
+        c.status || 'draft',
+
+        [
+          [
+            'draft',
+            'Draft'
+          ],
+
+          [
+            'published',
+            'Published'
+          ],
+
+          [
+            'archived',
+            'Archived'
+          ]
+        ]
+      ),
+
+      field(
+        'sort_order',
+        'Urutan',
+        c.sort_order ?? 0,
+        'number'
+      )
+
+    ],
+
+    async v => {
+
+      const payload = {
+
+        title:
+          v.title,
+
+        category:
+          v.category,
+
+        description:
+          v.description,
+
+        cover_url:
+          v.cover_url,
+
+        status:
+          v.status,
+
+        sort_order:
+          Number(
+            v.sort_order
+          ) || 0
+
+      };
+
+      await save(
+        'courses',
+        payload,
+        id
+      );
+
+      await loadAllData();
+
+      closeModal();
+
+      toast(
+        id
+          ? 'Kelas diperbarui.'
+          : 'Kelas ditambahkan.',
+        'success'
       );
 
     }
 
-  </script>
+  );
+
+}
+
+
+/* ============================================================
+   TEMPLATE
+   ============================================================ */
+
+function openTemplateModal(id = '') {
+
+  const x =
+    templates.find(
+      a =>
+        a.id === id
+    ) || {};
+
+  openModal(
+
+    id
+      ? 'Edit Template'
+      : 'Tambah Template',
+
+    [
+
+      field(
+        'title',
+        'Judul',
+        x.title || ''
+      ),
+
+      field(
+        'category',
+        'Kategori',
+        x.category || ''
+      ),
+
+      field(
+        'description',
+        'Deskripsi',
+        x.description || '',
+        'textarea'
+      ),
+
+      field(
+        'sheet_url',
+        'Spreadsheet URL',
+        x.sheet_url || '',
+        'url'
+      ),
+
+      field(
+        'prompt_text',
+        'Prompt AI',
+        x.prompt_text || '',
+        'textarea'
+      ),
+
+      field(
+        'demo_url',
+        'Demo URL',
+        x.demo_url || '',
+        'url'
+      ),
+
+      field(
+        'sort_order',
+        'Urutan',
+        x.sort_order ?? 0,
+        'number'
+      ),
+
+      checkboxField(
+        'is_published',
+        'Published',
+        x.is_published !== false
+      )
+
+    ],
+
+    async v => {
+
+      await save(
+
+        'templates',
+
+        {
+          ...v,
+
+          sort_order:
+            Number(
+              v.sort_order
+            ) || 0
+
+        },
+
+        id
+
+      );
+
+      await loadAllData();
+
+      closeModal();
+
+      toast(
+        'Template tersimpan.',
+        'success'
+      );
+
+    }
+
+  );
+
+}
+
+
+function renderTemplates() {
+
+  const g =
+    document.getElementById(
+      'templatesGrid'
+    );
+
+  g.innerHTML = '';
+
+  const list =
+    templates.filter(
+      x =>
+        x.is_published ||
+        currentRole === 'admin'
+    );
+
+  if (!list.length) {
+
+    g.innerHTML =
+      `
+      <div class="col-span-full py-12 text-center text-sm text-slate-400">
+        Belum ada template.
+      </div>
+      `;
+
+    return;
+  }
+
+  list.forEach(t => {
+
+    g.insertAdjacentHTML(
+      'beforeend',
+      `
+
+      <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border p-6 shadow-sm flex flex-col">
+
+        <div class="flex justify-between gap-3">
+
+          <span class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50">
+            ${esc(t.category)}
+          </span>
+
+          <i class="fa-solid fa-cubes-stacked text-indigo-500"></i>
+
+        </div>
+
+        <h3 class="mt-4 text-base font-black">
+          ${esc(t.title)}
+        </h3>
+
+        <p class="mt-2 text-xs text-slate-500 line-clamp-3">
+          ${esc(t.description || '')}
+        </p>
+
+        <div class="mt-auto pt-5 space-y-2">
+
+          ${
+            t.sheet_url
+
+              ? `
+                <a
+                  href="${esc(t.sheet_url)}"
+                  target="_blank"
+                  rel="noopener"
+                  class="w-full py-2.5 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl flex justify-center">
+
+                  Duplikat Spreadsheet
+
+                </a>
+                `
+
+              : ''
+          }
+
+          ${
+            t.prompt_text
+
+              ? `
+                <button
+                  onclick="copyText(${JSON.stringify(t.prompt_text)})"
+                  class="w-full py-2.5 bg-slate-100 dark:bg-dark-border text-xs font-bold rounded-xl">
+
+                  Salin Prompt AI
+
+                </button>
+                `
+
+              : ''
+          }
+
+          ${
+            t.demo_url
+
+              ? `
+                <a
+                  href="${esc(t.demo_url)}"
+                  target="_blank"
+                  rel="noopener"
+                  class="w-full py-2.5 bg-brand-600 text-white text-xs font-bold rounded-xl flex justify-center">
+
+                  Live Demo
+
+                </a>
+                `
+
+              : ''
+          }
+
+          ${
+            currentRole === 'admin'
+
+              ? `
+                <div class="grid grid-cols-2 gap-2">
+
+                  <button
+                    onclick="openTemplateModal('${t.id}')"
+                    class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold">
+
+                    Edit
+
+                  </button>
+
+                  <button
+                    onclick="deleteRow('templates','${t.id}',renderTemplates)"
+                    class="py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold">
+
+                    Hapus
+
+                  </button>
+
+                </div>
+                `
+
+              : ''
+          }
+
+        </div>
+
+      </div>
+
+      `
+    );
+
+  });
+
+}
+
+
+/* ============================================================
+   TOOLS
+   ============================================================ */
+
+function openToolModal(id = '') {
+
+  const x =
+    tools.find(
+      a =>
+        a.id === id
+    ) || {};
+
+  openModal(
+
+    id
+      ? 'Edit Tool'
+      : 'Tambah Tool',
+
+    [
+
+      field(
+        'name',
+        'Nama Tool',
+        x.name || ''
+      ),
+
+      field(
+        'category',
+        'Kategori',
+        x.category || ''
+      ),
+
+      field(
+        'description',
+        'Deskripsi',
+        x.description || '',
+        'textarea'
+      ),
+
+      field(
+        'url',
+        'URL Tool',
+        x.url || '',
+        'url'
+      ),
+
+      field(
+        'sort_order',
+        'Urutan',
+        x.sort_order ?? 0,
+        'number'
+      ),
+
+      checkboxField(
+        'is_published',
+        'Published',
+        x.is_published !== false
+      )
+
+    ],
+
+    async v => {
+
+      await save(
+
+        'tools',
+
+        {
+          ...v,
+
+          sort_order:
+            Number(
+              v.sort_order
+            ) || 0
+
+        },
+
+        id
+
+      );
+
+      await loadAllData();
+
+      closeModal();
+
+      toast(
+        'Tool tersimpan.',
+        'success'
+      );
+
+    }
+
+  );
+
+}
+
+
+function renderTools() {
+
+  const g =
+    document.getElementById(
+      'toolsGrid'
+    );
+
+  g.innerHTML = '';
+
+  const list =
+    tools.filter(
+      x =>
+        x.is_published ||
+        currentRole === 'admin'
+    );
+
+  if (!list.length) {
+
+    g.innerHTML =
+      `
+      <div class="col-span-full py-12 text-center text-sm text-slate-400">
+        Belum ada tools.
+      </div>
+      `;
+
+    return;
+  }
+
+  list.forEach(t => {
+
+    g.insertAdjacentHTML(
+      'beforeend',
+      `
+
+      <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border p-6 shadow-sm flex flex-col">
+
+        <span class="text-[10px] font-extrabold uppercase text-emerald-600">
+          ${esc(t.category)}
+        </span>
+
+        <h3 class="mt-2 text-base font-black">
+          ${esc(t.name)}
+        </h3>
+
+        <p class="mt-2 text-xs text-slate-500 line-clamp-3">
+          ${esc(t.description || '')}
+        </p>
+
+        <a
+          href="${esc(t.url)}"
+          target="_blank"
+          rel="noopener"
+          class="mt-auto pt-5">
+
+          <span class="w-full py-2.5 bg-slate-100 dark:bg-dark-border hover:bg-emerald-500 hover:text-white text-xs font-bold rounded-xl flex justify-center">
+
+            Buka Tool
+
+          </span>
+
+        </a>
+
+        ${
+          currentRole === 'admin'
+
+            ? `
+              <div class="grid grid-cols-2 gap-2 mt-2">
+
+                <button
+                  onclick="openToolModal('${t.id}')"
+                  class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold">
+
+                  Edit
+
+                </button>
+
+                <button
+                  onclick="deleteRow('tools','${t.id}',renderTools)"
+                  class="py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold">
+
+                  Hapus
+
+                </button>
+
+              </div>
+              `
+
+            : ''
+        }
+
+      </div>
+
+      `
+    );
+
+  });
+
+}
+
+
+/* ============================================================
+   PRODUCTS
+   ============================================================ */
+
+function openProductModal(id = '') {
+
+  const x =
+    products.find(
+      a =>
+        a.id === id
+    ) || {};
+
+  openModal(
+
+    id
+      ? 'Edit Produk'
+      : 'Tambah Produk',
+
+    [
+
+      field(
+        'title',
+        'Nama Produk',
+        x.title || ''
+      ),
+
+      field(
+        'price',
+        'Harga',
+        x.price ?? 0,
+        'number'
+      ),
+
+      field(
+        'description',
+        'Deskripsi',
+        x.description || '',
+        'textarea'
+      ),
+
+      field(
+        'image_url',
+        'URL Gambar',
+        x.image_url || '',
+        'url'
+      ),
+
+      field(
+        'checkout_url',
+        'Checkout URL',
+        x.checkout_url || '',
+        'url'
+      ),
+
+      field(
+        'sort_order',
+        'Urutan',
+        x.sort_order ?? 0,
+        'number'
+      ),
+
+      checkboxField(
+        'is_published',
+        'Published',
+        x.is_published !== false
+      )
+
+    ],
+
+    async v => {
+
+      await save(
+
+        'products',
+
+        {
+          ...v,
+
+          price:
+            Number(v.price) || 0,
+
+          sort_order:
+            Number(v.sort_order) || 0
+
+        },
+
+        id
+
+      );
+
+      await loadAllData();
+
+      closeModal();
+
+      toast(
+        'Produk tersimpan.',
+        'success'
+      );
+
+    }
+
+  );
+
+}
+
+
+function renderProducts() {
+
+  const g =
+    document.getElementById(
+      'productsGrid'
+    );
+
+  g.innerHTML = '';
+
+  const list =
+    products.filter(
+      x =>
+        x.is_published ||
+        currentRole === 'admin'
+    );
+
+  if (!list.length) {
+
+    g.innerHTML =
+      `
+      <div class="col-span-full py-12 text-center text-sm text-slate-400">
+        Belum ada produk.
+      </div>
+      `;
+
+    return;
+  }
+
+  list.forEach(p => {
+
+    g.insertAdjacentHTML(
+      'beforeend',
+      `
+
+      <div class="bg-white dark:bg-dark-card rounded-3xl border border-slate-100 dark:border-dark-border overflow-hidden shadow-sm flex flex-col">
+
+        <div class="h-48 bg-slate-200 dark:bg-dark-border relative">
+
+          ${
+            p.image_url
+
+              ? `
+                <img
+                  src="${esc(p.image_url)}"
+                  class="w-full h-full object-cover"
+                  alt="${esc(p.title)}">
+                `
+
+              : `
+                <div class="w-full h-full flex items-center justify-center text-slate-400">
+
+                  <i class="fa-solid fa-bag-shopping text-5xl"></i>
+
+                </div>
+                `
+          }
+
+          ${
+            p.price != null
+
+              ? `
+                <span class="absolute top-3 right-3 bg-amber-500 text-white text-xs font-black px-3 py-1 rounded-full">
+
+                  Rp ${Number(p.price).toLocaleString('id-ID')}
+
+                </span>
+                `
+
+              : ''
+          }
+
+        </div>
+
+        <div class="p-6 flex-1 flex flex-col">
+
+          <h3 class="text-base font-black">
+            ${esc(p.title)}
+          </h3>
+
+          <p class="mt-2 text-xs text-slate-500 line-clamp-3">
+            ${esc(p.description || '')}
+          </p>
+
+          <a
+            href="${esc(p.checkout_url)}"
+            target="_blank"
+            rel="noopener"
+            class="mt-auto pt-5">
+
+            <span class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs rounded-xl flex justify-center">
+
+              Beli / Checkout
+
+            </span>
+
+          </a>
+
+          ${
+            currentRole === 'admin'
+
+              ? `
+                <div class="grid grid-cols-2 gap-2 mt-2">
+
+                  <button
+                    onclick="openProductModal('${p.id}')"
+                    class="py-2 bg-slate-100 dark:bg-dark-border rounded-xl text-xs font-bold">
+
+                    Edit
+
+                  </button>
+
+                  <button
+                    onclick="deleteRow('products','${p.id}',renderProducts)"
+                    class="py-2 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold">
+
+                    Hapus
+
+                  </button>
+
+                </div>
+                `
+
+              : ''
+          }
+
+        </div>
+
+      </div>
+
+      `
+    );
+
+  });
+
+}
+
+
+/* ============================================================
+   SAVE
+   ============================================================ */
+
+async function save(
+  table,
+  payload,
+  id = ''
+) {
+
+  if (
+    currentRole !== 'admin'
+  ) {
+
+    throw new Error(
+      'Akses admin diperlukan.'
+    );
+
+  }
+
+  const q =
+    id
+
+      ? sb
+          .from(table)
+          .update(payload)
+          .eq('id', id)
+
+      : sb
+          .from(table)
+          .insert(payload);
+
+  const {
+    error
+  } = await q;
+
+  if (error)
+    throw error;
+
+}
+
+
+/* ============================================================
+   DELETE LESSON
+   ============================================================ */
+
+async function deleteLesson(id) {
+
+  if (
+    currentRole !== 'admin'
+  )
+    return;
+
+  if (
+    !confirm(
+      'Hapus materi ini? Resource terkait juga akan dihapus.'
+    )
+  )
+    return;
+
+  const {
+    error
+  } =
+    await sb
+      .from('lessons')
+      .delete()
+      .eq('id', id);
+
+  if (error) {
+
+    toast(
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  if (
+    activeLessonId === id
+  ) {
+
+    activeLessonId = null;
+
+    clearLesson();
+
+  }
+
+  await loadAllData();
+
+  const c =
+    courses.find(
+      x =>
+        x.id ===
+        activeCourseId
+    );
+
+  if (c)
+    renderModules(c);
+
+  toast(
+    'Materi dihapus.',
+    'success'
+  );
+
+}
+
+
+/* ============================================================
+   DELETE COURSE
+   ============================================================ */
+
+async function deleteCourse(id) {
+
+  if (
+    currentRole !== 'admin'
+  )
+    return;
+
+  if (
+    !confirm(
+      'Hapus kelas ini? Modul, materi, dan resource terkait akan ikut terhapus.'
+    )
+  )
+    return;
+
+  const {
+    error
+  } =
+    await sb
+      .from('courses')
+      .delete()
+      .eq('id', id);
+
+  if (error) {
+
+    toast(
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  await loadAllData();
+
+  toast(
+    'Kelas dihapus.',
+    'success'
+  );
+
+}
+
+
+/* ============================================================
+   DELETE GENERIC
+   ============================================================ */
+
+async function deleteRow(
+  table,
+  id,
+  rerender
+) {
+
+  if (
+    currentRole !== 'admin'
+  )
+    return;
+
+  if (
+    !confirm(
+      'Hapus data ini?'
+    )
+  )
+    return;
+
+  const {
+    error
+  } =
+    await sb
+      .from(table)
+      .delete()
+      .eq('id', id);
+
+  if (error) {
+
+    toast(
+      error.message,
+      'error'
+    );
+
+    return;
+  }
+
+  await loadAllData();
+
+  rerender();
+
+  toast(
+    'Data dihapus.',
+    'success'
+  );
+
+}
+
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
+function openModal(
+  title,
+  fields,
+  onSubmit
+) {
+
+  document
+    .getElementById(
+      'modalTitle'
+    )
+    .textContent =
+      title;
+
+  const f =
+    document.getElementById(
+      'modalForm'
+    );
+
+  f.innerHTML =
+    fields.join('') +
+    `
+
+      <div class="pt-4 border-t border-slate-100 dark:border-dark-border flex justify-end gap-2">
+
+        <button
+          type="button"
+          onclick="closeModal()"
+          class="px-4 py-2.5 text-xs font-bold text-slate-500">
+
+          Batal
+
+        </button>
+
+        <button
+          class="px-5 py-2.5 bg-brand-600 text-white rounded-xl text-xs font-bold">
+
+          Simpan
+
+        </button>
+
+      </div>
+
+    `;
+
+  f.onsubmit =
+    async e => {
+
+      e.preventDefault();
+
+      try {
+
+        loading(
+          true,
+          'Menyimpan...'
+        );
+
+        const v =
+          Object.fromEntries(
+            new FormData(f).entries()
+          );
+
+        v.is_published =
+          f.querySelector(
+            '[name=is_published]'
+          )?.checked ?? true;
+
+        await onSubmit(v);
+
+        loading(false);
+
+      } catch(err) {
+
+        loading(false);
+
+        console.error(err);
+
+        toast(
+          err.message ||
+          'Gagal menyimpan.',
+          'error'
+        );
+
+      }
+
+    };
+
+  const m =
+    document.getElementById(
+      'modal'
+    );
+
+  m.classList.remove(
+    'hidden'
+  );
+
+  m.classList.add(
+    'flex'
+  );
+
+}
+
+
+function closeModal() {
+
+  const m =
+    document.getElementById(
+      'modal'
+    );
+
+  m.classList.add(
+    'hidden'
+  );
+
+  m.classList.remove(
+    'flex'
+  );
+
+}
+
+
+/* ============================================================
+   FORM FIELD
+   ============================================================ */
+
+function field(
+  name,
+  label,
+  value = '',
+  type = 'text'
+) {
+
+  return `
+
+    <div>
+
+      <label class="block text-xs font-bold mb-1.5">
+        ${esc(label)}
+      </label>
+
+      ${
+        type === 'textarea'
+
+          ? `
+
+            <textarea
+              name="${name}"
+              rows="4"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs outline-none focus:ring-2 focus:ring-brand-500">${esc(value)}</textarea>
+
+            `
+
+          : `
+
+            <input
+              name="${name}"
+              type="${type}"
+              value="${esc(value)}"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs outline-none focus:ring-2 focus:ring-brand-500">
+
+            `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+function selectField(
+  name,
+  label,
+  value,
+  options
+) {
+
+  return `
+
+    <div>
+
+      <label class="block text-xs font-bold mb-1.5">
+        ${esc(label)}
+      </label>
+
+      <select
+        name="${name}"
+        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-dark-border bg-slate-50 dark:bg-dark-hover text-xs">
+
+        ${
+          options
+            .map(
+              o => `
+
+                <option
+                  value="${esc(o[0])}"
+                  ${o[0] === value ? 'selected' : ''}>
+
+                  ${esc(o[1])}
+
+                </option>
+
+              `
+            )
+            .join('')
+        }
+
+      </select>
+
+    </div>
+
+  `;
+
+}
+
+
+function checkboxField(
+  name,
+  label,
+  checked
+) {
+
+  return `
+
+    <label class="flex items-center gap-2 text-xs font-bold">
+
+      <input
+        name="${name}"
+        type="checkbox"
+        ${checked ? 'checked' : ''}
+        class="w-4 h-4">
+
+      ${esc(label)}
+
+    </label>
+
+  `;
+
+}
+
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+function bindWa() {
+
+  [
+    'waHeader',
+    'waHero'
+  ]
+    .forEach(id => {
+
+      const e =
+        document.getElementById(id);
+
+      e.href =
+        WA_GROUP_URL;
+
+      e.classList.remove(
+        'hidden'
+      );
+
+    });
+
+}
+
+
+function copyText(text) {
+
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+
+      toast(
+        'Prompt berhasil disalin.',
+        'success'
+      );
+
+    })
+    .catch(() => {
+
+      toast(
+        'Gagal menyalin.',
+        'error'
+      );
+
+    });
+
+}
+
+
+function loading(
+  show,
+  text = 'Memuat...'
+) {
+
+  const x =
+    document.getElementById(
+      'loadingOverlay'
+    );
+
+  document
+    .getElementById(
+      'loadingText'
+    )
+    .textContent =
+      text;
+
+  x.classList.toggle(
+    'hidden',
+    !show
+  );
+
+  x.classList.toggle(
+    'flex',
+    show
+  );
+
+}
+
+
+function toast(
+  message,
+  type = 'info'
+) {
+
+  const c =
+    document.getElementById(
+      'toastContainer'
+    );
+
+  const x =
+    document.createElement(
+      'div'
+    );
+
+  const bg =
+    type === 'success'
+
+      ? 'bg-emerald-600'
+
+      : type === 'error'
+
+        ? 'bg-rose-600'
+
+        : 'bg-slate-900';
+
+  x.className =
+    `${bg} text-white px-4 py-3 rounded-2xl shadow-xl text-xs font-bold pointer-events-auto`;
+
+  x.textContent =
+    message;
+
+  c.appendChild(x);
+
+  setTimeout(
+    () => x.remove(),
+    3200
+  );
+
+}
+
+
+function initTheme() {
+
+  if (
+
+    localStorage.getItem(
+      'setya_theme'
+    ) === 'dark'
+
+    ||
+
+    (
+      !localStorage.getItem(
+        'setya_theme'
+      )
+
+      &&
+
+      matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches
+    )
+
+  ) {
+
+    document.documentElement
+      .classList
+      .add('dark');
+
+  }
+
+}
+
+
+function toggleDarkMode() {
+
+  document.documentElement
+    .classList
+    .toggle('dark');
+
+  localStorage.setItem(
+
+    'setya_theme',
+
+    document.documentElement
+      .classList
+      .contains('dark')
+
+      ? 'dark'
+      : 'light'
+
+  );
+
+}
+
+</script>
 
 </body>
 </html>
